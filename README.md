@@ -20,3 +20,7 @@ Google Fonts is used when available, with local font fallbacks. The Pinterest re
 ## GitHub Pages
 
 The included workflow deploys this static site on pushes to `main`. In the repository's **Settings → Pages**, choose **GitHub Actions** as the build source. The workflow can also be run manually from the Actions tab. The site works under the `/cs147/` repository path because asset URLs are relative.
+
+## Header artwork
+
+`assets/drawing-silhouette.png` was generated with the built-in image tool using the supplied seated-person photograph as a pose reference. The prompt requested a transparent paper-cut silhouette of a seated person drawing in a sketchbook, filled with muted garden greenery and pale-yellow wildflowers, without facial or clothing detail, outlines, text, or background scenery. The reference photograph is not bundled in the repository.
