@@ -24,3 +24,5 @@ The included workflow deploys this static site on pushes to `main`. In the repos
 ## Header artwork
 
 `assets/drawing-silhouette.png` was generated with the built-in image tool using the supplied seated-person photograph as a pose reference. The prompt requested a transparent paper-cut silhouette of a seated person drawing in a sketchbook, filled with muted garden greenery and pale-yellow wildflowers, without facial or clothing detail, outlines, text, or background scenery. The reference photograph is not bundled in the repository.
+
+The header uses only the artwork’s alpha channel as a subtractive CSS mask on the paper. The garden visible through the opening is the actual underlying header background, with responsive alignment maintained by ResizeObserver.

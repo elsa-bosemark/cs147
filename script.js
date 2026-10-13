@@ -48,3 +48,20 @@ if ('IntersectionObserver' in window) {
   }, { rootMargin: '-15% 0px -55% 0px' });
   document.querySelectorAll('main > section[id]').forEach(section => observer.observe(section));
 }
+
+// Keep the paper opening aligned with the responsive artist slot.
+const heroPaper = document.querySelector('.hero-paper');
+const artistSlot = document.querySelector('.drawing-cutout');
+function alignArtistOpening() {
+  if (!artistSlot.naturalWidth) return;
+  const scale = Math.min(artistSlot.clientWidth / artistSlot.naturalWidth, artistSlot.clientHeight / artistSlot.naturalHeight);
+  const width = artistSlot.naturalWidth * scale;
+  const height = artistSlot.naturalHeight * scale;
+  heroPaper.style.setProperty('--cutout-width', `${width}px`);
+  heroPaper.style.setProperty('--cutout-height', `${height}px`);
+  heroPaper.style.setProperty('--cutout-x', `${artistSlot.offsetLeft + (artistSlot.clientWidth - width) / 2}px`);
+  heroPaper.style.setProperty('--cutout-y', `${artistSlot.offsetTop + (artistSlot.clientHeight - height) / 2}px`);
+}
+artistSlot.addEventListener('load', alignArtistOpening);
+new ResizeObserver(alignArtistOpening).observe(heroPaper);
+alignArtistOpening();
