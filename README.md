@@ -17,9 +17,9 @@ The concept describes the proposed Etch experience supplied by the team; it does
 
 Google Fonts is used when available, with local font fallbacks. The Pinterest reference screenshots are visual inspiration and are not included as site assets.
 
-## GitHub Pages
+## Publishing
 
-The included workflow deploys this static site on pushes to `main`. In the repository's **Settings → Pages**, choose **GitHub Actions** as the build source. The workflow can also be run manually from the Actions tab. The site works under the `/cs147/` repository path because asset URLs are relative.
+This repository stores the website source. Automatic deployment is disabled; GitHub pushes do not publish the website.
 
 ## Header artwork
 
