@@ -112,3 +112,15 @@ body{padding-bottom:var(--footer-reveal-height)}
 .garden-footer img{object-fit:cover;object-position:center 60%}
 
 .idea-photo{border-radius:10px}
+
+.team-card .portrait:has(img){padding:0}
+.team-card .portrait img{display:block;object-position:center 35%}
+
+/* White postage-stamp frames around the team portraits. */
+.team-card .portrait:has(img){background:#fffdf8;padding:14px}
+
+/* Override each card's original tinted background. */
+.team-grid .team-card:nth-child(n) .portrait:has(img){background:#ffffff;padding:14px}
+
+/* Cast the shadow outside the masked postage-stamp frames. */
+.team-card{filter:drop-shadow(0 7px 10px rgba(38,55,43,.16))}
