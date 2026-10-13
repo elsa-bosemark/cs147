@@ -1,0 +1,22 @@
+# Stamps
+
+A responsive CS 147 starter website based on the supplied wireframe and garden photograph. Plain HTML, CSS, and JavaScript; no installation or build step required.
+
+## Preview
+
+Run `python3 -m http.server 8000` in this directory and open `http://localhost:8000`.
+
+## Customize
+
+- Project title, idea, concept, and milestone text: `index.html`.
+- Four team names, short bios, and optional photo paths: `teamMembers` in `script.js`.
+- Colors, typography, spacing, and responsive layouts: `styles.css`.
+- Header photo: `assets/garden.jpg`, converted from the supplied IMG_9062.HEIC.
+
+The concept describes the proposed Stamps experience supplied by the team; it does not claim a finished product exists. Team profiles and milestone resources are explicitly marked as placeholders. Add real content before presenting the site as a finalized project.
+
+Google Fonts is used when available, with local font fallbacks. The Pinterest reference screenshots are visual inspiration and are not included as site assets.
+
+## GitHub Pages
+
+The included workflow deploys this static site on pushes to `main`. In the repository's **Settings → Pages**, choose **GitHub Actions** as the build source. The workflow can also be run manually from the Actions tab. The site works under the `/cs147/` repository path because asset URLs are relative.
