@@ -87,3 +87,28 @@ body{isolation:isolate;padding-bottom:var(--footer-reveal-height)}
 main::after{content:'';position:absolute;left:0;right:0;bottom:-14px;height:14px;background:var(--paper);pointer-events:none;--edge-radius:7px;mask-image:radial-gradient(circle at 10.5px 100%,transparent var(--edge-radius),#000 calc(var(--edge-radius) + .7px));mask-size:21px 100%;mask-repeat:repeat-x}
 
 .idea-photo{box-shadow:0 12px 30px rgba(38,55,43,.18)}
+
+/* Reveal the complete footer photograph at its natural 4:3 proportions. */
+:root{--footer-reveal-height:75vw}
+.garden-footer{position:sticky;top:calc(100vh - var(--footer-reveal-height));height:var(--footer-reveal-height);margin-top:calc(-1 * var(--footer-reveal-height))}
+.garden-footer img{object-fit:contain;object-position:center}
+body{padding-bottom:0}
+.garden-footer{margin-top:0;inset:auto;position:sticky;top:min(0px,calc(100vh - var(--footer-reveal-height)));bottom:0}
+
+/* White branch grows from the right edge across the second photograph. */
+.idea-photo-wrap{position:relative}
+.idea-branch{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.94}
+
+/* Footer photograph moves naturally with the page. */
+.garden-footer{position:relative;top:auto;bottom:auto;inset:auto;z-index:0;margin-top:0}
+
+/* A compact, fuller sprig confined to the photograph's right side. */
+.idea-branch{inset:auto 0 0 auto;width:38%;height:76%}
+
+/* Restore the full-width garden reveal behind the scrolling page. */
+:root{--footer-reveal-height:clamp(260px,45vh,520px)}
+body{padding-bottom:var(--footer-reveal-height)}
+.garden-footer{position:fixed;inset:auto 0 0;top:auto;bottom:0;height:var(--footer-reveal-height);z-index:-1;margin:0}
+.garden-footer img{object-fit:cover;object-position:center 60%}
+
+.idea-photo{border-radius:10px}
