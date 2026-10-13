@@ -40,3 +40,14 @@ mask-size:var(--cutout-width,0px) var(--cutout-height,0px),calc(2 * var(--bite))
 mask-position:var(--cutout-x,0px) var(--cutout-y,0px),calc(-1 * var(--bite)) calc(-1 * var(--bite)),center;
 mask-repeat:no-repeat,repeat,no-repeat;mask-mode:alpha;mask-composite:exclude,add}
 .drawing-cutout{opacity:0;pointer-events:none}
+
+/* Anchor each scalloped edge to its own border so every notch cuts inward. */
+.stamp{
+mask-image:radial-gradient(circle at 0 var(--bite),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at 100% var(--bite),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at var(--bite) 0,transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at var(--bite) 100%,transparent var(--bite),#000 calc(var(--bite) + .7px));
+mask-size:100% calc(2 * var(--bite)),100% calc(2 * var(--bite)),calc(2 * var(--bite)) 100%,calc(2 * var(--bite)) 100%;
+mask-position:0 0;mask-repeat:repeat-y,repeat-y,repeat-x,repeat-x;mask-composite:intersect}
+.hero-paper::before{
+mask-image:url('assets/drawing-silhouette.png'),radial-gradient(circle at 0 var(--bite),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at 100% var(--bite),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at var(--bite) 0,transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at var(--bite) 100%,transparent var(--bite),#000 calc(var(--bite) + .7px));
+mask-size:var(--cutout-width,0px) var(--cutout-height,0px),100% calc(2 * var(--bite)),100% calc(2 * var(--bite)),calc(2 * var(--bite)) 100%,calc(2 * var(--bite)) 100%;
+mask-position:var(--cutout-x,0px) var(--cutout-y,0px),0 0,0 0,0 0,0 0;
+mask-repeat:no-repeat,repeat-y,repeat-y,repeat-x,repeat-x;mask-composite:exclude,intersect,intersect,intersect}
