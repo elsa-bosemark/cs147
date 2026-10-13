@@ -43,14 +43,47 @@ mask-repeat:no-repeat,repeat,no-repeat;mask-mode:alpha;mask-composite:exclude,ad
 
 /* Anchor each scalloped edge to its own border so every notch cuts inward. */
 .stamp{
-mask-image:radial-gradient(circle at 0 var(--bite),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at 100% var(--bite),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at var(--bite) 0,transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at var(--bite) 100%,transparent var(--bite),#000 calc(var(--bite) + .7px));
-mask-size:100% calc(2 * var(--bite)),100% calc(2 * var(--bite)),calc(2 * var(--bite)) 100%,calc(2 * var(--bite)) 100%;
+mask-image:radial-gradient(circle at 0 calc(1.5 * var(--bite)),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at 100% calc(1.5 * var(--bite)),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at calc(1.5 * var(--bite)) 0,transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at calc(1.5 * var(--bite)) 100%,transparent var(--bite),#000 calc(var(--bite) + .7px));
+mask-size:100% calc(3 * var(--bite)),100% calc(3 * var(--bite)),calc(3 * var(--bite)) 100%,calc(3 * var(--bite)) 100%;
 mask-position:0 0;mask-repeat:repeat-y,repeat-y,repeat-x,repeat-x;mask-composite:intersect}
 .hero-paper::before{
-mask-image:url('assets/drawing-silhouette.png'),radial-gradient(circle at 0 var(--bite),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at 100% var(--bite),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at var(--bite) 0,transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at var(--bite) 100%,transparent var(--bite),#000 calc(var(--bite) + .7px));
-mask-size:var(--cutout-width,0px) var(--cutout-height,0px),100% calc(2 * var(--bite)),100% calc(2 * var(--bite)),calc(2 * var(--bite)) 100%,calc(2 * var(--bite)) 100%;
+mask-image:url('assets/drawing-silhouette.png'),radial-gradient(circle at 0 calc(1.5 * var(--bite)),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at 100% calc(1.5 * var(--bite)),transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at calc(1.5 * var(--bite)) 0,transparent var(--bite),#000 calc(var(--bite) + .7px)),radial-gradient(circle at calc(1.5 * var(--bite)) 100%,transparent var(--bite),#000 calc(var(--bite) + .7px));
+mask-size:var(--cutout-width,0px) var(--cutout-height,0px),100% calc(3 * var(--bite)),100% calc(3 * var(--bite)),calc(3 * var(--bite)) 100%,calc(3 * var(--bite)) 100%;
 mask-position:var(--cutout-x,0px) var(--cutout-y,0px),0 0,0 0,0 0,0 0;
 mask-repeat:no-repeat,repeat-y,repeat-y,repeat-x,repeat-x;mask-composite:exclude,intersect,intersect,intersect}
 
 /* Let the garden header span the full page width at every breakpoint. */
 .hero{margin-left:0;margin-right:0;width:100%}
+
+/* A simple introduction: text beside an unframed garden photograph. */
+.idea-grid{gap:64px;align-items:center}
+.idea-photo{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center;border-radius:0}
+@media(max-width:600px){.idea-grid{gap:32px}}
+
+/* Keep the concept descriptions free of divider lines. */
+.steps article{border-top:0}
+
+/* Smaller headings share the Epilogue body font. */
+h3,.milestone-title{font-family:var(--sans)}
+
+/* Silent looping garden footage behind the paper and its cutout. */
+.hero-photo{overflow:hidden}
+.hero-video{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+
+/* The page slides away to reveal the original garden photo underneath. */
+:root{--footer-reveal-height:clamp(260px,45vh,520px)}
+body{isolation:isolate;padding-bottom:var(--footer-reveal-height)}
+.site-header,main{position:relative;z-index:1;background:var(--paper)}
+.garden-footer{position:fixed;inset:auto 0 0;height:var(--footer-reveal-height);width:100%;z-index:-1;overflow:hidden;margin:0;padding:0}
+.garden-footer img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 60%}
+
+/* Richer, slightly darker moving garden backdrop. */
+.hero-video{filter:brightness(.84) saturate(1.25)}
+
+/* Garden photo at the top; slow, rich footage revealed at the bottom. */
+.footer-video{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.84) saturate(1.25)}
+
+/* A perforated paper edge where the page reveals the footer footage. */
+main::after{content:'';position:absolute;left:0;right:0;bottom:-14px;height:14px;background:var(--paper);pointer-events:none;--edge-radius:7px;mask-image:radial-gradient(circle at 10.5px 100%,transparent var(--edge-radius),#000 calc(var(--edge-radius) + .7px));mask-size:21px 100%;mask-repeat:repeat-x}
+
+.idea-photo{box-shadow:0 12px 30px rgba(38,55,43,.18)}

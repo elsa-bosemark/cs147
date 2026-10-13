@@ -1,4 +1,4 @@
-# Stamps
+# Etch
 
 A responsive CS 147 starter website based on the supplied wireframe and garden photograph. Plain HTML, CSS, and JavaScript; no installation or build step required.
 
@@ -13,7 +13,7 @@ Run `python3 -m http.server 8000` in this directory and open `http://localhost:8
 - Colors, typography, spacing, and responsive layouts: `styles.css`.
 - Header photo: `assets/garden.jpg`, converted from the supplied IMG_9062.HEIC.
 
-The concept describes the proposed Stamps experience supplied by the team; it does not claim a finished product exists. Team profiles and milestone resources are explicitly marked as placeholders. Add real content before presenting the site as a finalized project.
+The concept describes the proposed Etch experience supplied by the team; it does not claim a finished product exists. Team profiles and milestone resources are explicitly marked as placeholders. Add real content before presenting the site as a finalized project.
 
 Google Fonts is used when available, with local font fallbacks. The Pinterest reference screenshots are visual inspiration and are not included as site assets.
 

@@ -65,3 +65,12 @@ function alignArtistOpening() {
 artistSlot.addEventListener('load', alignArtistOpening);
 new ResizeObserver(alignArtistOpening).observe(heroPaper);
 alignArtistOpening();
+
+const headerVideo = document.querySelector('.footer-video');
+if (headerVideo) {
+  headerVideo.defaultPlaybackRate = 0.75;
+  const slowHeaderVideo = () => { headerVideo.playbackRate = 0.75; };
+  headerVideo.addEventListener('loadedmetadata', slowHeaderVideo);
+  headerVideo.addEventListener('play', slowHeaderVideo);
+  slowHeaderVideo();
+}
