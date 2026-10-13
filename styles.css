@@ -4,11 +4,6 @@
 
 .hero-subtitle{display:block;font:38px/1.1 var(--serif);letter-spacing:-.6px;margin-top:16px}h1{font-size:clamp(100px,11vw,150px)}.hero-heading{margin:24px 0 30px}.hero-heading>.handwritten{margin-bottom:0}@media(max-width:600px){h1{font-size:clamp(66px,22vw,100px)}.hero-subtitle{font-size:28px}.hero-paper{padding-top:30px;padding-bottom:30px}}
 
-/* A soft garden atmosphere, with the paper and typography kept crisp. */
-.hero{overflow:hidden}
-.hero-photo{inset:-12px;filter:blur(3px) saturate(.78) brightness(1.08);background-image:linear-gradient(180deg,rgba(243,240,231,.24),rgba(231,237,218,.16) 55%,rgba(16,37,24,.2)),url('assets/garden.jpg')}
-.hero::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 75% 20%,rgba(255,249,226,.28),transparent 65%)}
-
 /* The seated artist shares the stamp with the project title. */
 .hero-paper{width:min(920px,86%);padding:42px 50px 36px}
 .hero-main{display:grid;grid-template-columns:42% 58%;align-items:center;gap:10px;margin:24px 0 25px}
