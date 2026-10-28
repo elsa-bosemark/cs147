@@ -16,7 +16,7 @@ teamMembers.forEach((member, index) => {
   const card = document.createElement('article');
   card.className = 'team-card';
   const portrait = document.createElement('div');
-  portrait.className = 'portrait stamp';
+  portrait.className = 'portrait';
   if (member.photo) {
     const image = document.createElement('img');
     image.src = member.photo;
