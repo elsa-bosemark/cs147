@@ -19,7 +19,13 @@ Google Fonts is used when available, with local font fallbacks. The Pinterest re
 
 ## Publishing
 
-This repository stores the website source. Automatic deployment is disabled; GitHub pushes do not publish the website.
+GitHub Pages publishes `main` to https://elsa-bosemark.github.io/cs147/ on every push (**Settings → Pages**: deploy from the `main` branch, root folder). `.nojekyll` makes GitHub serve the files as they are. The site works under the `/cs147/` path because asset URLs are relative.
+
+The Stanford URL (https://web.stanford.edu/class/cs147/projects/DesignforMeaningfulWork/etch/) shows the GitHub Pages site through `stanford/index.html`. Upload that file once; later pushes don't need it again:
+
+```
+scp stanford/index.html SUNETID@rice.stanford.edu:/afs/ir/class/cs147/WWW/projects/DesignforMeaningfulWork/etch/index.html
+```
 
 ## Header artwork
 
