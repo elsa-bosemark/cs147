@@ -3,7 +3,6 @@
 --paper:#f4f4f2;--surface:#fff;--canvas:#e7e8e5;--ink:#151715;--on-ink:var(--paper);--ink-soft:#5b5f5a;--ink-muted:#9a9e98;--line:#e1e2de;
 --photo-white:#fff;--photo-ink:#151715;--focus:#2f6fb0;
 --tag-people:#e9d3c4;--tag-animals:#d3e2c6;--tag-light:#efe6b5;--tag-sound:#ccdcea;
---glass:rgba(255,255,255,.58);--blur-glass:22px;
 --shadow-print:0 1px 1px rgba(0,0,0,.08),0 6px 14px rgba(0,0,0,.14);
 --font-serif:"Instrument Serif","Iowan Old Style",Georgia,serif;--font-sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
 --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-12:48px;--space-16:64px;
@@ -18,7 +17,6 @@ color-scheme:light dark}
 @media(prefers-color-scheme:dark){:root{
 --paper:#121412;--surface:#1c1f1c;--canvas:#0b0c0b;--ink:#eeefeb;--ink-soft:#b3b7b0;--ink-muted:#6f746d;--line:#2a2e2a;--focus:#8db8e8;
 --tag-people:#4a382d;--tag-animals:#2f4129;--tag-light:#47411f;--tag-sound:#24384a;
---glass:rgba(28,31,28,.55);
 --shadow-print:0 1px 1px rgba(0,0,0,.3),0 6px 14px rgba(0,0,0,.45);
 /* Body copy never sits directly on canvas in dark. */
 --band:var(--surface)}}
@@ -73,43 +71,24 @@ h1{font:italic 400 clamp(72px,10vw,128px)/.9 var(--font-serif);letter-spacing:-.
 .steps h3{margin-bottom:var(--space-3)}
 .steps p{color:var(--ink-soft)}
 
-/* Our work: equal cards in the order we made them, closing with a bento of four cards beside the featured piece. */
 .project-heading{margin-bottom:var(--space-8)}
-.work{--work-gap:var(--space-6);--work-columns:4;display:flex;flex-wrap:wrap;gap:var(--space-12) var(--work-gap)}
-.work-card{flex:0 0 calc((100% - (var(--work-columns) - 1) * var(--work-gap)) / var(--work-columns));min-width:0;display:flex;flex-direction:column}
-.work-cover{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius-lg);background:var(--tint,var(--tag-light))}
-.work-card:nth-child(4n+2){--tint:var(--tag-animals)}
-.work-card:nth-child(4n+3){--tint:var(--tag-sound)}
-.work-card:nth-child(4n){--tint:var(--tag-people)}
-.work-cover img{display:block;width:100%;height:100%;object-fit:cover}
-.work-body{flex:1;display:flex;flex-direction:column}
-.work-body h3{margin:var(--space-4) 0 var(--space-3)}
-/* One row per file, right under the title. */
-.work-files{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
-.work-file{display:inline-flex;align-items:center;gap:var(--space-2);padding:0;border:0;background:none;font:500 14px/1.4 var(--font-sans);color:var(--ink-soft);text-decoration:none;cursor:pointer}
-.work-file svg{flex:none;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.work-file:hover span{color:var(--ink);text-decoration:underline}
-.work-file.is-pending{cursor:default}
-.work-file.is-pending:hover span{color:inherit;text-decoration:none}
-/* Two columns of cards on the left match the four-column row above; the featured piece fills the right half. */
-.work-bento{flex:0 0 100%;display:flex;gap:var(--work-gap)}
-.work-side{--work-columns:2;flex:1 1 0;min-width:0;display:flex;flex-wrap:wrap;gap:var(--space-12) var(--work-gap)}
-/* The featured piece: its title on glass over a cover as tall as the cards beside it. */
-.work-featured{flex:1 1 0;position:relative}
-.work-featured .work-cover{flex:1;aspect-ratio:auto;min-height:320px}
-.work-featured .work-body{position:absolute;left:var(--space-4);bottom:var(--space-4);max-width:min(440px,calc(100% - 2 * var(--space-4)));padding:var(--space-5) var(--space-6);border-radius:var(--radius-xl);background:var(--glass);-webkit-backdrop-filter:blur(var(--blur-glass)) saturate(1.5);backdrop-filter:blur(var(--blur-glass)) saturate(1.5)}
-.work-featured .work-body h3{margin-top:0;font-size:30px;line-height:1.05}
-.work-featured .work-file{color:var(--ink)}
 
-/* Videos play in a sheet over the page. */
-.video-dialog{width:min(960px,calc(100% - 2 * var(--gutter)));max-width:none;padding:0;border:0;border-radius:var(--radius-2xl);background:var(--paper);color:var(--ink);overflow:hidden}
-.video-dialog[open]{animation:sheet-rise .3s var(--ease)}
-.video-dialog::backdrop{background:rgba(21,23,21,.6)}
-.video-dialog form{display:flex;justify-content:flex-end;padding:var(--space-3)}
-.video-close{min-height:40px;padding:var(--space-2) var(--space-4);border:1px solid var(--line);border-radius:var(--radius-pill);background:var(--surface);color:var(--ink);font:600 15px/1.2 var(--font-sans);cursor:pointer}
-.video-frame{aspect-ratio:16/9;background:#000}
-.video-frame iframe{display:block;width:100%;height:100%;border:0}
-@keyframes sheet-rise{from{opacity:0;transform:translateY(40px)}}
+/* Assignments: cards on surface. Published work gets an ink number and outlined links; upcoming work sits flat on paper with a dashed edge. */
+.assignments>h3{margin-bottom:var(--space-6)}
+.assignment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5)}
+.assignment{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-4);padding:var(--space-6);border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface)}
+.assignment-number{padding:5px var(--space-3);border-radius:var(--radius-pill);background:var(--ink);color:var(--on-ink);font:600 13px/1.2 var(--font-sans)}
+.assignment h4{margin:0 0 var(--space-2);font:400 26px/1.08 var(--font-serif);letter-spacing:-.01em}
+.assignment-links{display:flex;flex-direction:column;gap:var(--space-4);margin-top:auto}
+.assignment-link-group{display:flex;flex-direction:column;gap:var(--space-2)}
+.assignment-link-label{font:600 12px/1.2 var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted)}
+.assignment-link-row{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.assignment-links a{padding:9px var(--space-4);border:1px solid var(--ink);border-radius:var(--radius-pill);font:600 14px/1.2 var(--font-sans);text-decoration:none;transition:background-color .3s var(--ease),color .3s var(--ease)}
+.assignment-links a:hover{background:var(--ink);color:var(--on-ink)}
+.assignment.is-upcoming{border-style:dashed;background:transparent}
+.is-upcoming .assignment-number{background:var(--canvas);color:var(--ink-soft)}
+.is-upcoming h4{color:var(--ink-soft)}
+.assignment-soon{margin-top:auto;padding:9px var(--space-4);border:1px dashed var(--line);border-radius:var(--radius-pill);font:500 14px/1.2 var(--font-sans);color:var(--ink-muted)}
 
 /* Team portraits are polaroids: white prints with small tilts, never a tidy grid. */
 .team-heading{margin-bottom:var(--space-12)}
@@ -122,8 +101,8 @@ h1{font:italic 400 clamp(72px,10vw,128px)/.9 var(--font-serif);letter-spacing:-.
 .portrait img{display:block;object-position:center 35%}
 .portrait svg{display:block;width:100%;height:100%;background:var(--tint);fill:none;stroke:var(--photo-ink);stroke-width:1.3}
 .portrait>span{position:absolute;left:0;right:0;bottom:26px;text-align:center;font:400 13px/1.35 var(--font-sans);color:var(--photo-ink)}
-.team-card h3{margin-top:var(--space-6)}
-.team-card p{margin-top:6px;color:var(--ink-soft)}
+.team-card h3{margin-top:var(--space-6);text-align:center}
+.team-card p{margin-top:6px;color:var(--ink-soft);white-space:pre-line;text-align:center}
 
 /* The page lifts away like a sheet, with rounded corners, to reveal the garden photo underneath. */
 body{isolation:isolate;padding-bottom:var(--footer-reveal-height)}
@@ -136,13 +115,10 @@ main{position:relative;z-index:1;background:var(--paper);border-radius:0 0 var(-
 .hero-subtitle{font-size:32px}
 .idea-grid{gap:var(--space-8)}
 .steps{gap:var(--space-6)}
+.assignment-grid{grid-template-columns:repeat(2,1fr)}
 .team-grid{grid-template-columns:repeat(2,1fr);gap:var(--space-12) var(--space-8)}
 .team-card:nth-child(n){margin-top:0}
-.team-card:nth-child(even){margin-top:var(--space-6)}
-.work{--work-columns:2}
-.work-bento{flex-direction:column;row-gap:var(--space-12)}
-.work-featured{flex:none}
-.work-featured .work-cover{flex:none;aspect-ratio:4/3;min-height:0}}
+.team-card:nth-child(even){margin-top:var(--space-6)}}
 
 @media(max-width:640px){
 :root{--section-space:var(--space-12)}
@@ -160,15 +136,11 @@ h1{font-size:64px}
 .hero-subtitle{margin-top:var(--space-3);font-size:30px}
 .idea-grid,.steps{grid-template-columns:1fr}
 .steps{margin-top:var(--space-8)}
-.work{--work-gap:var(--space-4);row-gap:var(--space-8)}
-.work-side,.work-bento{row-gap:var(--space-8)}
-.work-body h3{font-size:20px}
-.work-file{font-size:13px}
-.work-featured .work-body{left:var(--space-3);right:var(--space-3);bottom:var(--space-3);max-width:none;padding:var(--space-4) var(--space-5)}
-.work-featured .work-body h3{font-size:26px}
+.assignment-grid{grid-template-columns:1fr}
+.assignment h4{font-size:22px}
 .team-grid{gap:var(--space-8) var(--space-5)}
 .team-card h3{font-size:22px;margin-top:var(--space-4)}}
 
 @media(max-width:380px){.brand{font-size:26px}nav a{padding:7px 8px;font-size:12px}}
 
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
