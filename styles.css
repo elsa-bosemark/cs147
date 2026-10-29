@@ -5,6 +5,7 @@
 --tag-people:#e9d3c4;--tag-animals:#d3e2c6;--tag-light:#efe6b5;--tag-sound:#ccdcea;
 --glass:rgba(255,255,255,.58);--blur-glass:22px;
 --shadow-print:0 1px 1px rgba(0,0,0,.08),0 6px 14px rgba(0,0,0,.14);
+--shadow-lift:0 2px 4px rgba(0,0,0,.08),0 18px 36px rgba(0,0,0,.18);
 --font-serif:"Instrument Serif","Iowan Old Style",Georgia,serif;--font-sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
 --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-12:48px;--space-16:64px;
 --radius-md:16px;--radius-lg:22px;--radius-xl:26px;--radius-2xl:30px;--radius-pill:999px;
@@ -20,6 +21,7 @@ color-scheme:light dark}
 --tag-people:#4a382d;--tag-animals:#2f4129;--tag-light:#47411f;--tag-sound:#24384a;
 --glass:rgba(28,31,28,.55);
 --shadow-print:0 1px 1px rgba(0,0,0,.3),0 6px 14px rgba(0,0,0,.45);
+--shadow-lift:0 2px 4px rgba(0,0,0,.35),0 18px 36px rgba(0,0,0,.55);
 /* Body copy never sits directly on canvas in dark. */
 --band:var(--surface)}}
 
@@ -82,15 +84,32 @@ h1{font:italic 400 clamp(72px,10vw,128px)/.9 var(--font-serif);letter-spacing:-.
 .work-card:nth-child(4n+3){--tint:var(--tag-sound)}
 .work-card:nth-child(4n){--tint:var(--tag-people)}
 .work-cover img{display:block;width:100%;height:100%;object-fit:cover}
+/* Finished covers sit on the page like prints and lift when you point at them. The corner arrow says the cover opens the PDF. */
+a.work-cover{box-shadow:var(--shadow-print);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+a.work-cover img{transition:transform .6s var(--ease)}
+a.work-cover:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+a.work-cover:hover img{transform:scale(1.04)}
+.work-open{position:absolute;top:var(--space-3);right:var(--space-3);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--surface);color:var(--ink);box-shadow:var(--shadow-print);transition:background-color .3s var(--ease),color .3s var(--ease)}
+.work-open svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
+a.work-cover:hover .work-open{background:var(--ink);color:var(--on-ink)}
+a.work-cover:hover .work-open svg{transform:translate(2px,-2px)}
+/* Work we haven't made yet stays flat on its tint. Pointing at it makes the letters hop, one after the next. */
+.work-soon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;white-space:pre;font:italic 400 26px/1 var(--font-serif);color:var(--ink-soft)}
+.work-soon span{display:inline-block}
+.work-card.is-pending:hover .work-soon span{animation:hop .6s var(--ease) both;animation-delay:calc(var(--i) * 35ms)}
+@keyframes hop{40%{transform:translateY(-9px) rotate(-6deg)}70%{transform:translateY(2px)}}
 .work-body{flex:1;display:flex;flex-direction:column}
 .work-body h3{margin:var(--space-4) 0 var(--space-3)}
-/* One row per file, right under the title. */
+/* One row per file, right under the title. Ready files are ink with an underline; files still to come are muted. */
 .work-files{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
-.work-file{display:inline-flex;align-items:center;gap:var(--space-2);padding:0;border:0;background:none;font:500 14px/1.4 var(--font-sans);color:var(--ink-soft);text-decoration:none;cursor:pointer}
-.work-file svg{flex:none;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.work-file:hover span{color:var(--ink);text-decoration:underline}
-.work-file.is-pending{cursor:default}
-.work-file.is-pending:hover span{color:inherit;text-decoration:none}
+.work-file{display:inline-flex;align-items:center;gap:var(--space-2);padding:0;border:0;background:none;font:500 14px/1.4 var(--font-sans);color:var(--ink);text-decoration:none;cursor:pointer}
+.work-file svg{flex:none;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--ease)}
+.work-file span{text-decoration:underline 1px color-mix(in srgb,currentColor 30%,transparent);text-underline-offset:4px;transition:text-decoration-color .3s var(--ease)}
+.work-file:hover span{text-decoration-color:currentColor}
+.work-file:hover svg{transform:translateX(2px)}
+.work-file.is-pending{color:var(--ink-muted);cursor:default}
+.work-file.is-pending span{text-decoration:none}
+.work-file.is-pending:hover svg{transform:none}
 /* Two columns of cards on the left match the four-column row above; the featured piece fills the right half. */
 .work-bento{flex:0 0 100%;display:flex;gap:var(--work-gap)}
 .work-side{--work-columns:2;flex:1 1 0;min-width:0;display:flex;flex-wrap:wrap;gap:var(--space-12) var(--work-gap)}
@@ -99,7 +118,6 @@ h1{font:italic 400 clamp(72px,10vw,128px)/.9 var(--font-serif);letter-spacing:-.
 .work-featured .work-cover{flex:1;aspect-ratio:auto;min-height:320px}
 .work-featured .work-body{position:absolute;left:var(--space-4);bottom:var(--space-4);max-width:min(440px,calc(100% - 2 * var(--space-4)));padding:var(--space-5) var(--space-6);border-radius:var(--radius-xl);background:var(--glass);-webkit-backdrop-filter:blur(var(--blur-glass)) saturate(1.5);backdrop-filter:blur(var(--blur-glass)) saturate(1.5)}
 .work-featured .work-body h3{margin-top:0;font-size:30px;line-height:1.05}
-.work-featured .work-file{color:var(--ink)}
 
 /* Videos play in a sheet over the page. */
 .video-dialog{width:min(960px,calc(100% - 2 * var(--gutter)));max-width:none;padding:0;border:0;border-radius:var(--radius-2xl);background:var(--paper);color:var(--ink);overflow:hidden}
@@ -118,7 +136,12 @@ h1{font:italic 400 clamp(72px,10vw,128px)/.9 var(--font-serif);letter-spacing:-.
 .team-card:nth-child(2){--tilt:2deg;--tint:var(--tag-animals);margin-top:var(--space-6)}
 .team-card:nth-child(3){--tilt:-1.5deg;--tint:var(--tag-sound);margin-top:var(--space-2)}
 .team-card:nth-child(4){--tilt:3deg;--tint:var(--tag-people);margin-top:var(--space-8)}
-.portrait{position:relative;aspect-ratio:4/5;padding:10px 10px 14px;background:var(--photo-white);border-radius:3px;box-shadow:var(--shadow-print);transform:rotate(var(--tilt,0deg))}
+.portrait{position:relative;aspect-ratio:4/5;padding:10px 10px 14px;background:var(--photo-white);border-radius:3px;box-shadow:var(--shadow-print);transform:perspective(900px) translateY(var(--lift,0px)) rotate(var(--tilt,0deg)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--grow,1));transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+/* Pointing at a print straightens it and lifts it toward you. It tips after the pointer, with a glint of light where the pointer is. */
+.portrait::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.5),transparent 60%);mix-blend-mode:soft-light;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
+@media(hover:hover){
+.team-card .portrait:hover{--tilt:0deg;--lift:-10px;--grow:1.04;box-shadow:var(--shadow-lift);transition:transform .2s ease-out,box-shadow .6s var(--ease)}
+.portrait:hover::after{opacity:1}}
 .portrait img{display:block;object-position:center 35%}
 .portrait svg{display:block;width:100%;height:100%;background:var(--tint);fill:none;stroke:var(--photo-ink);stroke-width:1.3}
 .portrait>span{position:absolute;left:0;right:0;bottom:26px;text-align:center;font:400 13px/1.35 var(--font-sans);color:var(--photo-ink)}
@@ -142,7 +165,9 @@ main{position:relative;z-index:1;background:var(--paper);border-radius:0 0 var(-
 .work{--work-columns:2}
 .work-bento{flex-direction:column;row-gap:var(--space-12)}
 .work-featured{flex:none}
-.work-featured .work-cover{flex:none;aspect-ratio:4/3;min-height:0}}
+.work-featured .work-cover{flex:none;aspect-ratio:4/3;min-height:0}
+/* The glass title covers the lower part of the shorter featured cover, so its note centers in the space above it. */
+.work-featured .work-soon{bottom:40%}}
 
 @media(max-width:640px){
 :root{--section-space:var(--space-12)}
@@ -164,6 +189,8 @@ h1{font-size:64px}
 .work-side,.work-bento{row-gap:var(--space-8)}
 .work-body h3{font-size:20px}
 .work-file{font-size:13px}
+.work-open{top:var(--space-2);right:var(--space-2);width:32px;height:32px}
+.work-open svg{width:15px;height:15px}
 .work-featured .work-body{left:var(--space-3);right:var(--space-3);bottom:var(--space-3);max-width:none;padding:var(--space-4) var(--space-5)}
 .work-featured .work-body h3{font-size:26px}
 .team-grid{gap:var(--space-8) var(--space-5)}

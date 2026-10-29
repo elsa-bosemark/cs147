@@ -34,18 +34,36 @@ teamMembers.forEach((member, index) => {
   card.append(portrait, name, degrees);
   grid.append(card);
 });
+// Prints tip toward the pointer as it moves over them, up to 8 degrees each way.
+if (matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) {
+  grid.querySelectorAll('.portrait').forEach(portrait => {
+    portrait.addEventListener('pointermove', event => {
+      const box = portrait.getBoundingClientRect();
+      const x = (event.clientX - box.left) / box.width;
+      const y = (event.clientY - box.top) / box.height;
+      portrait.style.setProperty('--rx', `${(0.5 - y) * 16}deg`);
+      portrait.style.setProperty('--ry', `${(x - 0.5) * 16}deg`);
+      portrait.style.setProperty('--gx', `${x * 100}%`);
+      portrait.style.setProperty('--gy', `${y * 100}%`);
+    });
+    portrait.addEventListener('pointerleave', () => {
+      portrait.style.removeProperty('--rx');
+      portrait.style.removeProperty('--ry');
+    });
+  });
+}
 // Our work, in the order we made it. The last five close the story as a bento: four cards beside the featured final piece.
 // Files live in assignment_downloads/, covers in assignment_downloads/covers/. Leave pdf, cover, href, or video empty until that file is ready; it shows as a placeholder.
 // pdf: what the cover opens. cover: an image of the PDF's first page. video: a YouTube or Vimeo embed URL.
 const work = [
   { title: 'Needfinding', pdf: 'assignment_downloads/A1.pdf', cover: 'assignment_downloads/covers/A1.jpg', files: [{ label: 'PowerPoint', type: 'slides', href: 'assignment_downloads/A1.pptx' }] },
-  { title: 'Experience prototypes', pdf: 'assignment_downloads/A2.pdf', cover: 'assignment_downloads/covers/A2.jpg', files: [{ label: 'PowerPoint', type: 'slides', href: 'assignment_downloads/A2.pptx' }] },
+  { title: 'POVs, HMWs and experience prototypes', pdf: 'assignment_downloads/A2.pdf', cover: 'assignment_downloads/covers/A2.jpg', files: [{ label: 'PowerPoint', type: 'slides', href: 'assignment_downloads/A2.pptx' }] },
   { title: 'Concept video', pdf: 'assignment_downloads/A4.pdf', cover: 'assignment_downloads/covers/A4.jpg', files: [{ label: 'PowerPoint', type: 'slides', href: 'assignment_downloads/A4.pptx' }, { label: 'Watch', type: 'video', video: 'https://www.youtube.com/embed/fZAmPD2v1Gg?autoplay=1' }, { label: 'Download', type: 'download', href: 'assignment_downloads/A4_Concept_Video_Compressed.mp4.zip' }] },
-  { title: 'Low-fi prototyping', pdf: 'assignment_downloads/A5.pdf', cover: 'assignment_downloads/covers/A5.jpg', files: [{ label: 'PowerPoint', type: 'slides', href: 'assignment_downloads/A5.pptx' }, { label: 'Sketch report', type: 'doc', href: 'assignment_downloads/A5_SketchReport.pdf' }] },
-  { title: 'Medium-fi prototype', pdf: '', cover: '', files: [{ label: 'PowerPoint', type: 'slides', href: '' }, { label: 'Figma', type: 'design', href: '' }, { label: 'README', type: 'doc', href: '' }] },
-  { title: 'High-fi prototype', pdf: '', cover: '', files: [{ label: 'PowerPoint', type: 'slides', href: '' }, { label: 'Prototype', type: 'link', href: '' }, { label: 'README', type: 'doc', href: '' }] },
-  { title: 'Heuristic evaluation', pdf: '', cover: '', files: [{ label: 'Spreadsheet', type: 'sheet', href: '' }] },
-  { title: 'Poster, pitch and demo', pdf: '', cover: '', files: [{ label: 'PowerPoint', type: 'slides', href: '' }, { label: 'Script', type: 'doc', href: '' }, { label: 'Poster', type: 'image', href: '' }, { label: 'Poster source', type: 'source', href: '' }, { label: 'Watch demo', type: 'video', video: '' }, { label: 'Download demo', type: 'download', href: '' }] },
+  { title: 'Low-fi prototyping and usability testing', pdf: 'assignment_downloads/A5.pdf', cover: 'assignment_downloads/covers/A5.jpg', files: [{ label: 'PowerPoint', type: 'slides', href: 'assignment_downloads/A5.pptx' }, { label: 'Sketch report', type: 'doc', href: 'assignment_downloads/A5_SketchReport.pdf' }] },
+  { title: 'Interactive medium-fi prototype', pdf: '', cover: '', files: [{ label: 'PowerPoint', type: 'slides', href: '' }, { label: 'Figma', type: 'design', href: '' }, { label: 'README', type: 'doc', href: '' }] },
+  { title: 'Interactive high-fi prototype', pdf: '', cover: '', files: [{ label: 'PowerPoint', type: 'slides', href: '' }, { label: 'Prototype', type: 'link', href: '' }, { label: 'README', type: 'doc', href: '' }] },
+  { title: 'Heuristic evaluation synthesis', pdf: '', cover: '', files: [{ label: 'Spreadsheet', type: 'sheet', href: '' }] },
+  { title: 'Poster, pitch and demo video', pdf: '', cover: '', files: [{ label: 'PowerPoint', type: 'slides', href: '' }, { label: 'Script', type: 'doc', href: '' }, { label: 'Poster', type: 'image', href: '' }, { label: 'Poster source', type: 'source', href: '' }, { label: 'Watch demo', type: 'video', video: '' }, { label: 'Download demo', type: 'download', href: '' }] },
   { title: 'Final report', pdf: '', cover: '', files: [{ label: 'Word doc', type: 'doc', href: '' }] },
 ];
 const workGrid = document.getElementById('work-grid');
@@ -107,13 +125,28 @@ work.forEach((piece, index) => {
     cover.target = '_blank';
     cover.rel = 'noopener';
     cover.setAttribute('aria-label', `Open the ${piece.title} PDF`);
+    cover.innerHTML = '<span class="work-open" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>';
+  } else {
+    card.classList.add('is-pending');
+    // One span per letter so the letters can hop in a wave on hover.
+    const soon = document.createElement('span');
+    soon.className = 'work-soon';
+    soon.setAttribute('role', 'img');
+    soon.setAttribute('aria-label', 'Coming soon');
+    [...'Coming soon'].forEach((letter, i) => {
+      const span = document.createElement('span');
+      span.textContent = letter;
+      span.style.setProperty('--i', i);
+      soon.append(span);
+    });
+    cover.append(soon);
   }
   if (piece.cover) {
     const image = document.createElement('img');
     image.src = piece.cover;
     image.alt = '';
     image.loading = 'lazy';
-    cover.append(image);
+    cover.prepend(image);
   }
   const body = document.createElement('div');
   body.className = 'work-body';
