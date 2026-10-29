@@ -10,7 +10,9 @@ Run `python3 -m http.server 8000` in this directory and open `http://localhost:8
 
 - Project title, idea, concept, and milestone text: `index.html`.
 - Four team names, degrees, and photo paths: `teamMembers` in `script.js`.
-- Assignment cards and their download links: the `assignments` section of `index.html`. Files live in `assignment_downloads/`; keep each under 50 MB, and host anything over 100 MB, such as raw videos, on Google Drive or Box and link to it.
+- Our process gallery: `work` in `script.js`, in the order the work was made; the last piece is featured. Put files in `assignment_downloads/` and fill in `pdf` (what the cover opens), `cover` (the PDF's first page, saved in `assignment_downloads/covers/`), and each file's `href`, or `video` for a YouTube or Vimeo embed URL. Anything left empty shows as a placeholder. Keep each file under 50 MB, and host anything over 100 MB, such as raw videos, on Google Drive or Box and link to it.
+
+  To make a cover: `pdftoppm -f 1 -l 1 -singlefile -jpeg -scale-to-x 960 -scale-to-y -1 assignment_downloads/A6.pdf assignment_downloads/covers/A6`
 - Colors, typography, spacing, and responsive layouts: `styles.css`.
 - Header photo: `assets/garden.jpg`, converted from the supplied IMG_9062.HEIC.
 

@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
-  <link rel="stylesheet" href="styles.css?v=assignments-merge">
-  <script src="script.js?v=assignments-merge" defer></script>
+  <link rel="stylesheet" href="styles.css?v=gallery-restore">
+  <script src="script.js?v=gallery-restore" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#idea">Skip to content</a>
@@ -43,24 +43,13 @@
       </div>
     </section>
     <section class="concept section-wrap" aria-labelledby="concept-title"><div class="concept-heading"><h2 id="concept-title">Make something.<br><em>Let it grow.</em></h2></div><div class="steps"><article><h3>Find your little escape.</h3><p>Explore places where others have made art. Find a spot that inspires you, and take a moment to settle into the world outside.</p></article><article><h3>Paint without pressure.</h3><p>Reach for the paints and brush in your phone case. Follow a prompt or create freely on seed paper. There’s no right way to make your mark.</p></article><article><h3>Leave a little life.</h3><p>Create ephemeral art, then plant your work. Share anonymously in the companion app and build a personal map of the places that inspire you.</p></article></div></section>
-    <section class="project section-wrap" id="project" aria-labelledby="project-title"><div class="project-heading"><h2 id="project-title">An idea, <em>in the making.</em></h2></div>
-      <div class="assignments" aria-labelledby="assignments-title">
-        <h3 id="assignments-title">Assignments</h3>
-        <div class="assignment-grid">
-          <article class="assignment"><span class="assignment-number">A1</span><h4>Needfinding</h4><div class="assignment-links"><div class="assignment-link-group"><span class="assignment-link-label">Slides</span><div class="assignment-link-row"><a href="assignment_downloads/A1.pdf" target="_blank" rel="noopener">PDF <span aria-hidden="true">↗</span></a><a href="assignment_downloads/A1.pptx" download>PPTX <span aria-hidden="true">↓</span></a></div></div></div></article>
-          <article class="assignment"><span class="assignment-number">A2</span><h4>Additional Needfinding, POVs, HMWs &amp; Experience Prototypes</h4><div class="assignment-links"><div class="assignment-link-group"><span class="assignment-link-label">Slides</span><div class="assignment-link-row"><a href="assignment_downloads/A2.pdf" target="_blank" rel="noopener">PDF <span aria-hidden="true">↗</span></a><a href="assignment_downloads/A2.pptx" download>PPTX <span aria-hidden="true">↓</span></a></div></div></div></article>
-          <article class="assignment"><span class="assignment-number">A4</span><h4>Concept Video</h4><div class="assignment-links"><div class="assignment-link-group"><span class="assignment-link-label">Slides</span><div class="assignment-link-row"><a href="assignment_downloads/A4.pdf" target="_blank" rel="noopener">PDF <span aria-hidden="true">↗</span></a><a href="assignment_downloads/A4.pptx" download>PPTX <span aria-hidden="true">↓</span></a></div></div><div class="assignment-link-group"><span class="assignment-link-label">Concept video</span><div class="assignment-link-row"><a href="https://www.youtube.com/watch?v=fZAmPD2v1Gg" target="_blank" rel="noopener">YouTube <span aria-hidden="true">↗</span></a><a href="assignment_downloads/A4_Concept_Video_Compressed.mp4.zip" download>ZIP <span aria-hidden="true">↓</span></a></div></div></div></article>
-          <article class="assignment"><span class="assignment-number">A5</span><h4>Sketching, Low-fi Prototyping &amp; Usability Testing</h4><div class="assignment-links"><div class="assignment-link-group"><span class="assignment-link-label">Slides</span><div class="assignment-link-row"><a href="assignment_downloads/A5.pdf" target="_blank" rel="noopener">PDF <span aria-hidden="true">↗</span></a><a href="assignment_downloads/A5.pptx" download>PPTX <span aria-hidden="true">↓</span></a></div></div><div class="assignment-link-group"><span class="assignment-link-label">Sketch report</span><div class="assignment-link-row"><a href="assignment_downloads/A5_SketchReport.pdf" target="_blank" rel="noopener">PDF <span aria-hidden="true">↗</span></a></div></div></div></article>
-          <article class="assignment is-upcoming"><span class="assignment-number">A6</span><h4>Interactive Medium-fi Prototype</h4><p class="assignment-soon">Coming soon</p></article>
-          <article class="assignment is-upcoming"><span class="assignment-number">A8</span><h4>Interactive High-fi Prototype</h4><p class="assignment-soon">Coming soon</p></article>
-          <article class="assignment is-upcoming"><span class="assignment-number">A9</span><h4>Heuristic Evaluation Synthesis</h4><p class="assignment-soon">Coming soon</p></article>
-          <article class="assignment is-upcoming"><span class="assignment-number">A10</span><h4>Poster, Pitch &amp; Demo Video</h4><p class="assignment-soon">Coming soon</p></article>
-          <article class="assignment is-upcoming"><span class="assignment-number">A11</span><h4>Final Report</h4><p class="assignment-soon">Coming soon</p></article>
-        </div>
-      </div>
-    </section>
+    <section class="project section-wrap" id="project" aria-labelledby="project-title"><div class="project-heading"><h2 id="project-title">An idea, <em>in the making.</em></h2></div><div class="work" id="work-grid"></div></section>
     <section class="team section-wrap" id="team" aria-labelledby="team-title"><div class="team-heading"><div><h2 id="team-title">Growing this <em>together.</em></h2></div></div><div class="team-grid" id="team-grid"></div></section>
   </main>
+  <dialog class="video-dialog" id="video-dialog" aria-label="Video">
+    <form method="dialog"><button class="video-close">Close</button></form>
+    <div class="video-frame"><iframe title="Video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+  </dialog>
   <footer class="garden-footer" aria-label="Garden photograph"><img src="assets/garden.jpg" alt="Sunlight across the garden pond" loading="lazy"></footer>
 
 </body>
