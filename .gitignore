@@ -1,6 +1,4 @@
 .DS_Store
 node_modules/
 *.log
-assignment_downloads/*.pptx
 assignment_downloads/*.mp4
-assignment_downloads/*.zip
