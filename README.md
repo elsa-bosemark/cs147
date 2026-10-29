@@ -10,6 +10,7 @@ Run `python3 -m http.server 8000` in this directory and open `http://localhost:8
 
 - Project title, idea, concept, and milestone text: `index.html`.
 - Four team names, short bios, and optional photo paths: `teamMembers` in `script.js`.
+- Our process gallery: `work` in `script.js`, in the order the work was made; the last piece is shown wide. Put files in `work/` and fill in `pdf` (what the cover opens), `cover` (an image of the PDF's first page), and each file's `href`, or `video` for a YouTube or Vimeo embed URL. Anything left empty shows as a placeholder. Host files over 100 MB, such as downloadable videos, on Google Drive or Box and link to them.
 - Colors, typography, spacing, and responsive layouts: `styles.css`.
 - Header photo: `assets/garden.jpg`, converted from the supplied IMG_9062.HEIC.
 

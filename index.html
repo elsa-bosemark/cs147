@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
-  <link rel="stylesheet" href="styles.css?v=etch-ds">
-  <script src="script.js?v=etch-ds" defer></script>
+  <link rel="stylesheet" href="styles.css?v=work-gallery">
+  <script src="script.js?v=work-gallery" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#idea">Skip to content</a>
@@ -43,13 +43,13 @@
       </div>
     </section>
     <section class="concept section-wrap" aria-labelledby="concept-title"><div class="concept-heading"><h2 id="concept-title">Make something.<br><em>Let it grow.</em></h2></div><div class="steps"><article><h3>Find your little escape.</h3><p>Explore places where others have made art. Find a spot that inspires you, and take a moment to settle into the world outside.</p></article><article><h3>Paint without pressure.</h3><p>Reach for the paints and brush in your phone case. Follow a prompt or create freely on seed paper. There’s no right way to make your mark.</p></article><article><h3>Leave a little life.</h3><p>Create ephemeral art, then plant your work. Share anonymously in the companion app and build a personal map of the places that inspire you.</p></article></div></section>
-    <section class="project section-wrap" id="project" aria-labelledby="project-title"><div class="project-heading"><h2 id="project-title">An idea, <em>in the making.</em></h2></div><div class="milestones">
-      <details><summary><span class="milestone-number">01</span><span class="milestone-title">Needfinding <small>Listening & observing</small></span><span class="status">To come</span><span class="expand" aria-hidden="true">+</span></summary><div class="milestone-content"><p>We’ll begin with conversations and observations to understand how people make time for creativity, reconnect with nature, and experience pressure around making art.</p><p class="resource-note">Interview notes and findings will be added here.</p></div></details>
-      <details><summary><span class="milestone-number">02</span><span class="milestone-title">Experience prototypes <small>Exploring possibilities</small></span><span class="status">To come</span><span class="expand" aria-hidden="true">+</span></summary><div class="milestone-content"><p>Small experiments will help us explore the paint-filled phone case, seed-paper art, and outdoor creative breaks.</p><p class="resource-note">Prototype materials and reflections will be added here.</p></div></details>
-      <details><summary><span class="milestone-number">03</span><span class="milestone-title">Design & iteration <small>Giving the idea shape</small></span><span class="status">To come</span><span class="expand" aria-hidden="true">+</span></summary><div class="milestone-content"><p>We’ll turn what we learn into an interface, test it with people, and refine the experience one iteration at a time.</p><p class="resource-note">Sketches, testing, and final project links will be added here.</p></div></details>
-    </div></section>
+    <section class="project section-wrap" id="project" aria-labelledby="project-title"><div class="project-heading"><h2 id="project-title">An idea, <em>in the making.</em></h2></div><div class="work" id="work-grid"></div></section>
     <section class="team section-wrap" id="team" aria-labelledby="team-title"><div class="team-heading"><div><h2 id="team-title">Growing this <em>together.</em></h2></div></div><div class="team-grid" id="team-grid"></div></section>
   </main>
+  <dialog class="video-dialog" id="video-dialog" aria-label="Video">
+    <form method="dialog"><button class="video-close">Close</button></form>
+    <div class="video-frame"><iframe title="Video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+  </dialog>
   <footer class="garden-footer" aria-label="Garden photograph"><img src="assets/garden.jpg" alt="Sunlight across the garden pond" loading="lazy"></footer>
 
 </body>

@@ -3,6 +3,7 @@
 --paper:#f4f4f2;--surface:#fff;--canvas:#e7e8e5;--ink:#151715;--on-ink:var(--paper);--ink-soft:#5b5f5a;--ink-muted:#9a9e98;--line:#e1e2de;
 --photo-white:#fff;--photo-ink:#151715;--focus:#2f6fb0;
 --tag-people:#e9d3c4;--tag-animals:#d3e2c6;--tag-light:#efe6b5;--tag-sound:#ccdcea;
+--glass:rgba(255,255,255,.58);--blur-glass:22px;
 --shadow-print:0 1px 1px rgba(0,0,0,.08),0 6px 14px rgba(0,0,0,.14);
 --font-serif:"Instrument Serif","Iowan Old Style",Georgia,serif;--font-sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
 --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-12:48px;--space-16:64px;
@@ -17,6 +18,7 @@ color-scheme:light dark}
 @media(prefers-color-scheme:dark){:root{
 --paper:#121412;--surface:#1c1f1c;--canvas:#0b0c0b;--ink:#eeefeb;--ink-soft:#b3b7b0;--ink-muted:#6f746d;--line:#2a2e2a;--focus:#8db8e8;
 --tag-people:#4a382d;--tag-animals:#2f4129;--tag-light:#47411f;--tag-sound:#24384a;
+--glass:rgba(28,31,28,.55);
 --shadow-print:0 1px 1px rgba(0,0,0,.3),0 6px 14px rgba(0,0,0,.45);
 /* Body copy never sits directly on canvas in dark. */
 --band:var(--surface)}}
@@ -71,20 +73,43 @@ h1{font:italic 400 clamp(72px,10vw,128px)/.9 var(--font-serif);letter-spacing:-.
 .steps h3{margin-bottom:var(--space-3)}
 .steps p{color:var(--ink-soft)}
 
-/* Milestones: entries separated by line hairlines, with a status chip and a round toggle. */
+/* Our work: equal cards in the order we made them, closing with a bento of four cards beside the featured piece. */
 .project-heading{margin-bottom:var(--space-8)}
-details{border-top:1px solid var(--line)}
-details:last-child{border-bottom:1px solid var(--line)}
-summary{list-style:none;display:flex;align-items:center;gap:var(--space-6);padding:var(--space-6) 0;cursor:pointer;border-radius:var(--radius-md)}
-summary::-webkit-details-marker{display:none}
-.milestone-number{flex:none;width:40px;font:400 26px/1 var(--font-serif);color:var(--ink-muted)}
-.milestone-title{font:400 26px/1.08 var(--font-serif);letter-spacing:-.01em}
-.milestone-title small{display:block;margin-top:6px;font:400 13px/1.35 var(--font-sans);letter-spacing:0;color:var(--ink-soft)}
-.status{margin-left:auto;white-space:nowrap;padding:7px 14px;border:1px solid var(--line);border-radius:var(--radius-pill);background:var(--surface);font:500 14px/1.3 var(--font-sans)}
-.expand{flex:none;display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:var(--surface);font:400 22px/1 var(--font-sans);transition:transform .3s var(--ease)}
-details[open] .expand{transform:rotate(45deg)}
-.milestone-content{max-width:740px;padding:0 0 var(--space-6) 64px;color:var(--ink-soft)}
-.resource-note{font-size:13px;line-height:1.35}
+.work{--work-gap:var(--space-6);--work-columns:4;display:flex;flex-wrap:wrap;gap:var(--space-12) var(--work-gap)}
+.work-card{flex:0 0 calc((100% - (var(--work-columns) - 1) * var(--work-gap)) / var(--work-columns));min-width:0;display:flex;flex-direction:column}
+.work-cover{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius-lg);background:var(--tint,var(--tag-light))}
+.work-card:nth-child(4n+2){--tint:var(--tag-animals)}
+.work-card:nth-child(4n+3){--tint:var(--tag-sound)}
+.work-card:nth-child(4n){--tint:var(--tag-people)}
+.work-cover img{display:block;width:100%;height:100%;object-fit:cover}
+.work-body{flex:1;display:flex;flex-direction:column}
+.work-body h3{margin:var(--space-4) 0 var(--space-3)}
+/* One row per file, right under the title. */
+.work-files{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.work-file{display:inline-flex;align-items:center;gap:var(--space-2);padding:0;border:0;background:none;font:500 14px/1.4 var(--font-sans);color:var(--ink-soft);text-decoration:none;cursor:pointer}
+.work-file svg{flex:none;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.work-file:hover span{color:var(--ink);text-decoration:underline}
+.work-file.is-pending{cursor:default}
+.work-file.is-pending:hover span{color:inherit;text-decoration:none}
+/* Two columns of cards on the left match the four-column row above; the featured piece fills the right half. */
+.work-bento{flex:0 0 100%;display:flex;gap:var(--work-gap)}
+.work-side{--work-columns:2;flex:1 1 0;min-width:0;display:flex;flex-wrap:wrap;gap:var(--space-12) var(--work-gap)}
+/* The featured piece: its title on glass over a cover as tall as the cards beside it. */
+.work-featured{flex:1 1 0;position:relative}
+.work-featured .work-cover{flex:1;aspect-ratio:auto;min-height:320px}
+.work-featured .work-body{position:absolute;left:var(--space-4);bottom:var(--space-4);max-width:min(440px,calc(100% - 2 * var(--space-4)));padding:var(--space-5) var(--space-6);border-radius:var(--radius-xl);background:var(--glass);-webkit-backdrop-filter:blur(var(--blur-glass)) saturate(1.5);backdrop-filter:blur(var(--blur-glass)) saturate(1.5)}
+.work-featured .work-body h3{margin-top:0;font-size:30px;line-height:1.05}
+.work-featured .work-file{color:var(--ink)}
+
+/* Videos play in a sheet over the page. */
+.video-dialog{width:min(960px,calc(100% - 2 * var(--gutter)));max-width:none;padding:0;border:0;border-radius:var(--radius-2xl);background:var(--paper);color:var(--ink);overflow:hidden}
+.video-dialog[open]{animation:sheet-rise .3s var(--ease)}
+.video-dialog::backdrop{background:rgba(21,23,21,.6)}
+.video-dialog form{display:flex;justify-content:flex-end;padding:var(--space-3)}
+.video-close{min-height:40px;padding:var(--space-2) var(--space-4);border:1px solid var(--line);border-radius:var(--radius-pill);background:var(--surface);color:var(--ink);font:600 15px/1.2 var(--font-sans);cursor:pointer}
+.video-frame{aspect-ratio:16/9;background:#000}
+.video-frame iframe{display:block;width:100%;height:100%;border:0}
+@keyframes sheet-rise{from{opacity:0;transform:translateY(40px)}}
 
 /* Team portraits are polaroids: white prints with small tilts, never a tidy grid. */
 .team-heading{margin-bottom:var(--space-12)}
@@ -113,7 +138,11 @@ main{position:relative;z-index:1;background:var(--paper);border-radius:0 0 var(-
 .steps{gap:var(--space-6)}
 .team-grid{grid-template-columns:repeat(2,1fr);gap:var(--space-12) var(--space-8)}
 .team-card:nth-child(n){margin-top:0}
-.team-card:nth-child(even){margin-top:var(--space-6)}}
+.team-card:nth-child(even){margin-top:var(--space-6)}
+.work{--work-columns:2}
+.work-bento{flex-direction:column;row-gap:var(--space-12)}
+.work-featured{flex:none}
+.work-featured .work-cover{flex:none;aspect-ratio:4/3;min-height:0}}
 
 @media(max-width:640px){
 :root{--section-space:var(--space-12)}
@@ -131,15 +160,15 @@ h1{font-size:64px}
 .hero-subtitle{margin-top:var(--space-3);font-size:30px}
 .idea-grid,.steps{grid-template-columns:1fr}
 .steps{margin-top:var(--space-8)}
-summary{display:grid;grid-template-columns:auto 1fr auto;gap:var(--space-3) var(--space-4);padding:var(--space-5) 0}
-.milestone-number{width:auto}
-.milestone-title{font-size:22px}
-.status{grid-column:2;grid-row:2;justify-self:start;margin-left:0}
-.expand{grid-column:3;grid-row:1/span 2}
-.milestone-content{padding-left:0}
+.work{--work-gap:var(--space-4);row-gap:var(--space-8)}
+.work-side,.work-bento{row-gap:var(--space-8)}
+.work-body h3{font-size:20px}
+.work-file{font-size:13px}
+.work-featured .work-body{left:var(--space-3);right:var(--space-3);bottom:var(--space-3);max-width:none;padding:var(--space-4) var(--space-5)}
+.work-featured .work-body h3{font-size:26px}
 .team-grid{gap:var(--space-8) var(--space-5)}
 .team-card h3{font-size:22px;margin-top:var(--space-4)}}
 
 @media(max-width:380px){.brand{font-size:26px}nav a{padding:7px 8px;font-size:12px}}
 
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
