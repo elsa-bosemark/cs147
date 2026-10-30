@@ -125,7 +125,7 @@ work.forEach((piece, index) => {
     cover.target = '_blank';
     cover.rel = 'noopener';
     cover.setAttribute('aria-label', `Open the ${piece.title} PDF`);
-    cover.innerHTML = '<span class="work-open" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>';
+    cover.innerHTML = '<span class="work-open glass" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>';
   } else {
     card.classList.add('is-pending');
     // One span per letter so the letters can hop in a wave on hover.
@@ -149,7 +149,7 @@ work.forEach((piece, index) => {
     cover.prepend(image);
   }
   const body = document.createElement('div');
-  body.className = 'work-body';
+  body.className = featured ? 'work-body glass' : 'work-body';
   const title = document.createElement('h3');
   title.textContent = piece.title;
   const files = document.createElement('div');

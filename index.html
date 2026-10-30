@@ -10,15 +10,15 @@
   <title>Etch · CS 147</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
-  <link rel="stylesheet" href="styles.css?v=gallery-hop">
-  <script src="script.js?v=gallery-hop" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap">
+  <link rel="stylesheet" href="styles.css?v=design-v3e">
+  <script src="script.js?v=design-v3e" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#idea">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="#home" aria-label="Etch, home"><span>etch</span></a>
-    <nav aria-label="Main navigation"><a href="#idea">The idea</a><a href="#project">Our process</a><a href="#team">About us</a></nav>
+    <nav class="tab-bar glass" aria-label="Main navigation"><a href="#idea"><img class="icon-ink" src="assets/icons/pin.svg" alt="" width="20" height="20"><img class="icon-paper" src="assets/icons/pin-light.svg" alt="" width="20" height="20">The idea</a><a href="#project"><img class="icon-ink" src="assets/icons/folder.svg" alt="" width="20" height="20"><img class="icon-paper" src="assets/icons/folder-light.svg" alt="" width="20" height="20">Our process</a><a href="#team"><img class="icon-ink" src="assets/icons/pen.svg" alt="" width="20" height="20"><img class="icon-paper" src="assets/icons/pen-light.svg" alt="" width="20" height="20">About us</a></nav>
   </header>
   <main>
     <section id="home" class="hero" aria-labelledby="hero-title">
@@ -42,12 +42,12 @@
         </div>
       </div>
     </section>
-    <section class="concept section-wrap" aria-labelledby="concept-title"><div class="concept-heading"><h2 id="concept-title">Make something.<br><em>Let it grow.</em></h2></div><div class="steps"><article><h3>Find your little escape.</h3><p>Explore places where others have made art. Find a spot that inspires you, and take a moment to settle into the world outside.</p></article><article><h3>Paint without pressure.</h3><p>Reach for the paints and brush in your phone case. Follow a prompt or create freely on seed paper. There’s no right way to make your mark.</p></article><article><h3>Leave a little life.</h3><p>Create ephemeral art, then plant your work. Share anonymously in the companion app and build a personal map of the places that inspire you.</p></article></div></section>
+    <section class="concept section-wrap" aria-labelledby="concept-title"><div class="concept-heading"><h2 id="concept-title">Make something.<br><em>Let it grow.</em></h2></div><div class="steps"><article><span class="eyebrow">01</span><h3>Find your little escape.</h3><p>Explore places where others have made art. Find a spot that inspires you, and take a moment to settle into the world outside.</p></article><article><span class="eyebrow">02</span><h3>Paint without pressure.</h3><p>Reach for the paints and brush in your phone case. Follow a prompt or create freely on seed paper. There’s no right way to make your mark.</p></article><article><span class="eyebrow">03</span><h3>Leave a little life.</h3><p>Create ephemeral art, then plant your work. Share anonymously in the companion app and build a personal map of the places that inspire you.</p></article></div></section>
     <section class="project section-wrap" id="project" aria-labelledby="project-title"><div class="project-heading"><h2 id="project-title">An idea, <em>in the making.</em></h2></div><div class="work" id="work-grid"></div></section>
     <section class="team section-wrap" id="team" aria-labelledby="team-title"><div class="team-heading"><div><h2 id="team-title">Growing this <em>together.</em></h2></div></div><div class="team-grid" id="team-grid"></div></section>
   </main>
   <dialog class="video-dialog" id="video-dialog" aria-label="Video">
-    <form method="dialog"><button class="video-close">Close</button></form>
+    <form method="dialog"><button class="video-close glass" aria-label="Close"><picture><source srcset="assets/icons/close-light.svg" media="(prefers-color-scheme: dark)"><img src="assets/icons/close.svg" alt="" width="20" height="20"></picture></button></form>
     <div class="video-frame"><iframe title="Video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
   </dialog>
   <footer class="garden-footer" aria-label="Garden photograph"><img src="assets/garden.jpg" alt="Sunlight across the garden pond" loading="lazy"></footer>
