@@ -85,11 +85,12 @@ h1{font-weight:700;font-size:clamp(72px,10vw,128px);line-height:.95;letter-spaci
 
 .section-wrap{padding:var(--section-space) var(--content-inset)}
 
-/* Introduction: reading text beside a rounded photo. */
+/* Introduction: reading text beside our concept video. */
 .idea-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:center}
 .idea h2{margin-bottom:var(--space-6)}
 .idea p{max-width:460px;font-size:17px;line-height:1.55}
-.idea-photo{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-lg)}
+/* Our concept video plays in place, at its own 16:9 shape. */
+.idea-video{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(--radius-lg);background:#000;box-shadow:var(--shadow-print)}
 
 /* Concept: three numbered steps, each on a glass card. */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-8);margin-top:var(--space-12)}
