@@ -14,7 +14,8 @@ Run `python3 -m http.server 8000` in this directory and open `http://localhost:8
 
   To make a cover: `pdftoppm -f 1 -l 1 -singlefile -jpeg -scale-to-x 960 -scale-to-y -1 assignment_downloads/A6.pdf assignment_downloads/covers/A6`
 - Colors, typography, spacing, and responsive layouts: `styles.css`.
-- Header photo: `assets/garden.jpg`, converted from the supplied IMG_9062.HEIC.
+- Garden photo inside the seed packet's silhouette: `assets/garden.jpg`, converted from the supplied IMG_9062.HEIC.
+- Pressed flowers, kraft texture and background glow: `assets/flowers/`, `assets/kraft.webp` and `assets/glow-*.webp`, taken from the hi-fi prototype.
 
 The concept describes the proposed Etch experience supplied by the team; it does not claim a finished product exists. Team profiles and milestone resources are explicitly marked as placeholders. Add real content before presenting the site as a finalized project.
 
@@ -34,4 +35,6 @@ scp stanford/index.html SUNETID@rice.stanford.edu:/afs/ir/class/cs147/WWW/projec
 
 `assets/drawing-silhouette.png` was generated with the built-in image tool using the supplied seated-person photograph as a pose reference. The prompt requested a transparent paper-cut silhouette of a seated person drawing in a sketchbook, filled with muted garden greenery and pale-yellow wildflowers, without facial or clothing detail, outlines, text, or background scenery. The reference photograph is not bundled in the repository.
 
-The header uses only the artwork’s alpha channel as a subtractive CSS mask on the paper. The garden visible through the opening is the actual underlying header background, with responsive alignment maintained by ResizeObserver.
+The seed packet uses only the artwork’s alpha channel, as a CSS mask on the garden photo, so the garden shows in the shape of the person sketching.
+
+The packet tears open in `script.js`: scrolling, dragging the scissors along the seam, or tapping them sets the `--tear`, `--open` and `--cut` values that `styles.css` animates.

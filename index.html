@@ -3,54 +3,81 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4f4f2" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#121412" media="(prefers-color-scheme: dark)">
-  <meta name="color-scheme" content="light dark">
-  <meta name="description" content="Etch pairs a phone case with built-in paints and a brush with a companion app for outdoor creative breaks, anonymous sharing, and a personal map of inspiration.">
+  <meta name="theme-color" content="#f7f7f5">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Etch gives you three small sketching prompts every morning. Your sketches grow into flowers, and you give them as bouquets to a friend or to your future self.">
   <title>Etch · CS 147</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=design-v3e">
-  <script src="script.js?v=design-v3e" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400&display=swap">
+  <link rel="stylesheet" href="styles.css?v=hifi-7">
+  <script src="script.js?v=hifi-7" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#idea">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="#home" aria-label="Etch, home"><span>etch</span></a>
-    <nav class="tab-bar glass" aria-label="Main navigation"><a href="#idea"><img class="icon-ink" src="assets/icons/pin.svg" alt="" width="20" height="20"><img class="icon-paper" src="assets/icons/pin-light.svg" alt="" width="20" height="20">The idea</a><a href="#project"><img class="icon-ink" src="assets/icons/folder.svg" alt="" width="20" height="20"><img class="icon-paper" src="assets/icons/folder-light.svg" alt="" width="20" height="20">Our process</a><a href="#team"><img class="icon-ink" src="assets/icons/pen.svg" alt="" width="20" height="20"><img class="icon-paper" src="assets/icons/pen-light.svg" alt="" width="20" height="20">About us</a></nav>
+    <a class="brand" href="#home" aria-label="Etch, home">etch<svg aria-hidden="true" viewBox="0 0 92 12"><path d="M2 7 C 20 2, 40 11, 60 5 S 84 4, 90 7"/></svg></a>
+    <nav class="tabs" aria-label="Main navigation">
+      <a href="#idea"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21v-8"/><path d="M12 13c0-4 3-6 6-6 0 4-3 6-6 6z"/><path d="M12 15c0-3-2.5-5-5-5 0 3 2.5 5 5 5z"/></svg>The idea</a>
+      <a href="#project"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 20l3-1 11-11-2-2L5 17z"/><path d="M14 6l2 2"/></svg>Our process</a>
+      <a href="#team"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="7" r="2.5"/><circle cx="12" cy="4" r="2.5"/><path d="M8 12l4 9 4-9z"/></svg>About us</a>
+    </nav>
   </header>
   <main>
+    <div class="glow" aria-hidden="true"><img src="assets/glow-warm.webp" alt=""><img src="assets/glow-cool.webp" alt=""></div>
     <section id="home" class="hero" aria-labelledby="hero-title">
-      <div class="hero-photo"></div>
-      <div class="hero-paper">
-        <div class="hero-main">
-          <img class="drawing-cutout" src="assets/drawing-silhouette.png" alt="A person-shaped cutout in the paper revealing the garden behind it" width="1024" height="1024">
-          <div class="hero-heading"><h1 id="hero-title">etch<span class="hero-subtitle">Sketch without the <em>stress.</em></span></h1></div>
+      <div class="packet">
+        <div class="packet-strip"><span class="eyebrow">Etch Seed Co.</span><span class="eyebrow">Nº 147</span></div>
+        <div class="packet-tear"><button class="scissors" type="button" aria-label="Cut the seed packet open"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.5 7.5L20 18M8.5 16.5L20 6"/></svg></button><span class="packet-tear-label" aria-hidden="true">Tear here</span></div>
+        <div class="packet-body">
+          <div class="packet-main">
+            <div class="packet-copy">
+              <span class="eyebrow">Design for Meaningful Work</span>
+              <h1 id="hero-title">etch<svg class="squiggle" aria-hidden="true" viewBox="0 0 92 12"><path d="M2 7 C 20 2, 40 11, 60 5 S 84 4, 90 7"/></svg><span class="hero-subtitle">Sketch without the <em>stress.</em></span></h1>
+            </div>
+            <div class="packet-art" role="img" aria-label="A person sketching, cut from a photo of the garden pond"></div>
+          </div>
         </div>
       </div>
     </section>
     <section class="idea section-wrap" id="idea" aria-labelledby="idea-title">
       <div class="idea-grid">
         <div>
-          <h2 id="idea-title">Unlock nature’s<br><em>inspiration.</em></h2>
-          <p>A phone case with built-in paints and a brush, paired with a companion app, makes it easy to take creative breaks outdoors. Discover places where others have made art, follow a prompt or create freely, and share anonymously.</p>
+          <span class="eyebrow">The idea</span>
+          <h2 id="idea-title">For the love of<br><em>making, again.</em></h2>
+          <p>Etch is for makers who love their craft but have lost the joy in it. Each morning, Etch gives you three short prompts to sketch outside on paper, and every sketch grows into a flower to gift. A bouquet for a friend gives your work a purpose again, and a bouquet for yourself, opened months later, reminds you why you made it.</p>
         </div>
         <div class="idea-video-wrap">
           <iframe class="idea-video" src="https://www.youtube.com/embed/fZAmPD2v1Gg?rel=0" title="Etch concept video" loading="lazy" allow="encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
         </div>
       </div>
     </section>
-    <section class="concept section-wrap" aria-labelledby="concept-title"><div class="concept-heading"><h2 id="concept-title">Make something.<br><em>Let it grow.</em></h2></div><div class="steps"><article><span class="eyebrow">01</span><h3>Find your little escape.</h3><p>Explore places where others have made art. Find a spot that inspires you, and take a moment to settle into the world outside.</p></article><article><span class="eyebrow">02</span><h3>Paint without pressure.</h3><p>Reach for the paints and brush in your phone case. Follow a prompt or create freely on seed paper. There’s no right way to make your mark.</p></article><article><span class="eyebrow">03</span><h3>Leave a little life.</h3><p>Create ephemeral art, then plant your work. Share anonymously in the companion app and build a personal map of the places that inspire you.</p></article></div></section>
-    <section class="project section-wrap" id="project" aria-labelledby="project-title"><div class="project-heading"><h2 id="project-title">An idea, <em>in the making.</em></h2></div><div class="work" id="work-grid"></div></section>
-    <section class="team section-wrap" id="team" aria-labelledby="team-title"><div class="team-heading"><div><h2 id="team-title">Growing this <em>together.</em></h2></div></div><div class="team-grid" id="team-grid"></div></section>
+    <section class="concept section-wrap" aria-labelledby="concept-title">
+      <div class="concept-heading"><h2 id="concept-title">Make something.<br><em>Let it grow.</em></h2></div>
+      <div class="steps">
+        <article><span class="seed-no">Nº 01</span><h3>Pick a seed.</h3><p>Every day, Etch offers three small sketching prompts called seeds. Each seed grows into a different kind of flower.</p><img class="seed-flower" src="assets/flowers/larkspur.webp" alt="" width="320" height="334"></article>
+        <article><span class="seed-no">Nº 02</span><h3>Sketch it on paper.</h3><p>Head outside with any pen and paper. When you finish, take a photo of your sketch and of what inspired it. Etch plants the sketch, and over the next few days it grows into a flower.</p><img class="seed-flower" src="assets/flowers/geranium.webp" alt="" width="320" height="310"></article>
+        <article><span class="seed-no">Nº 03</span><h3>Gift what grows.</h3><p>Gather a few of your flowers into a bouquet and add a note. Send it to a friend, or schedule it to reach you months from now.</p><img class="seed-flower" src="assets/flowers/cherry.webp" alt="" width="320" height="324"></article>
+      </div>
+    </section>
+    <section class="project section-wrap" id="project" aria-labelledby="project-title"><div class="project-heading"><span class="eyebrow">Our process</span><h2 id="project-title">An idea, <em>in the making.</em></h2></div><div class="work" id="work-grid"></div></section>
+    <section class="team section-wrap" id="team" aria-labelledby="team-title"><div class="team-heading"><span class="eyebrow">About us</span><h2 id="team-title">Growing this <em>together.</em></h2></div><div class="team-grid" id="team-grid"></div></section>
   </main>
   <dialog class="video-dialog" id="video-dialog" aria-label="Video">
-    <form method="dialog"><button class="video-close glass" aria-label="Close"><picture><source srcset="assets/icons/close-light.svg" media="(prefers-color-scheme: dark)"><img src="assets/icons/close.svg" alt="" width="20" height="20"></picture></button></form>
+    <form method="dialog"><button class="video-close" aria-label="Close"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></form>
     <div class="video-frame"><iframe title="Video" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
   </dialog>
-  <footer class="garden-footer" aria-label="Garden photograph"><img src="assets/garden.jpg" alt="Sunlight across the garden pond" loading="lazy"></footer>
+  <footer class="packet-footer" aria-label="Pressed flowers on kraft paper">
+    <span class="eyebrow">Etch Seed Co.</span>
+    <div class="packet-flowers" aria-hidden="true">
+      <img src="assets/flowers/sprig.webp" alt="" width="320" height="455" loading="lazy">
+      <img src="assets/flowers/larkspur.webp" alt="" width="320" height="334" loading="lazy">
+      <img src="assets/flowers/orchid.webp" alt="" width="320" height="259" loading="lazy">
+      <img src="assets/flowers/geranium.webp" alt="" width="320" height="310" loading="lazy">
+      <img src="assets/flowers/cherry.webp" alt="" width="320" height="324" loading="lazy">
+      <img src="assets/flowers/lotus.webp" alt="" width="253" height="232" loading="lazy">
+    </div>
+  </footer>
 
 </body>
 </html>

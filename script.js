@@ -62,9 +62,9 @@ const work = [
   { title: 'Low-fi prototyping and usability testing', pdf: 'assignment_downloads/A5.pdf', cover: 'assignment_downloads/covers/A5.jpg', files: [{ label: 'PowerPoint', type: 'slides', href: 'assignment_downloads/A5.pptx' }, { label: 'Sketch report', type: 'doc', href: 'assignment_downloads/A5_SketchReport.pdf' }] },
   { title: 'Interactive medium-fi prototype', pdf: 'assignment_downloads/A6.pdf', cover: 'assignment_downloads/covers/A6.jpg', files: [{ label: 'Prototype', type: 'link', href: 'https://www.figma.com/proto/q1CqyCqSM2ClbAZqmbeeVK/A6-Prototype?node-id=4-792&p=f&t=dXI3bme3f0bfRXHn-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4%3A792&show-proto-sidebar=1' }, { label: 'Figma', type: 'design', href: 'https://www.figma.com/design/q1CqyCqSM2ClbAZqmbeeVK/A6-Prototype?node-id=0-1&p=f&t=dXI3bme3f0bfRXHn-0' }, { label: 'README', type: 'doc', href: 'assignment_downloads/A6_README.pdf' }] },
   { title: 'Interactive high-fi prototype', pdf: '', cover: '', files: [{ label: 'PowerPoint', type: 'slides', href: '' }, { label: 'Prototype', type: 'link', href: '' }, { label: 'README', type: 'doc', href: '' }] },
-  { title: 'Heuristic evaluation synthesis', pdf: '', cover: '', files: [{ label: 'Spreadsheet', type: 'sheet', href: '' }] },
+  { title: 'Heuristic evaluation synthesis', pdf: '', cover: '', files: [{ label: 'PDF', type: 'doc', href: '' }, { label: 'Spreadsheet', type: 'sheet', href: '' }] },
   { title: 'Poster, pitch and demo video', pdf: '', cover: '', files: [{ label: 'PowerPoint', type: 'slides', href: '' }, { label: 'Script', type: 'doc', href: '' }, { label: 'Poster', type: 'image', href: '' }, { label: 'Poster source', type: 'source', href: '' }, { label: 'Watch demo', type: 'video', video: '' }, { label: 'Download demo', type: 'download', href: '' }] },
-  { title: 'Final report', pdf: '', cover: '', files: [{ label: 'Word doc', type: 'doc', href: '' }] },
+  { title: 'Final report', pdf: '', cover: '', files: [{ label: 'Word doc', type: 'doc', href: '' }, { label: 'PDF', type: 'doc', href: '' }] },
 ];
 const workGrid = document.getElementById('work-grid');
 const videoDialog = document.getElementById('video-dialog');
@@ -125,7 +125,7 @@ work.forEach((piece, index) => {
     cover.target = '_blank';
     cover.rel = 'noopener';
     cover.setAttribute('aria-label', `Open the ${piece.title} PDF`);
-    cover.innerHTML = '<span class="work-open glass" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>';
+    cover.innerHTML = '<span class="work-open" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span>';
   } else {
     card.classList.add('is-pending');
     // One span per letter so the letters can hop in a wave on hover.
@@ -149,7 +149,7 @@ work.forEach((piece, index) => {
     cover.prepend(image);
   }
   const body = document.createElement('div');
-  body.className = featured ? 'work-body glass' : 'work-body';
+  body.className = 'work-body';
   const title = document.createElement('h3');
   title.textContent = piece.title;
   const files = document.createElement('div');
@@ -179,22 +179,87 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('main > section[id]').forEach(section => observer.observe(section));
 }
 
-// Keep the paper opening aligned with the responsive artist slot.
-const heroPaper = document.querySelector('.hero-paper');
-const artistSlot = document.querySelector('.drawing-cutout');
-function alignArtistOpening() {
-  if (!artistSlot.naturalWidth) return;
-  const scale = Math.min(artistSlot.clientWidth / artistSlot.naturalWidth, artistSlot.clientHeight / artistSlot.naturalHeight);
-  const width = artistSlot.naturalWidth * scale;
-  const height = artistSlot.naturalHeight * scale;
-  heroPaper.style.setProperty('--cutout-width', `${width}px`);
-  heroPaper.style.setProperty('--cutout-height', `${height}px`);
-  heroPaper.style.setProperty('--cutout-x', `${artistSlot.offsetLeft + (artistSlot.clientWidth - width) / 2}px`);
-  heroPaper.style.setProperty('--cutout-y', `${artistSlot.offsetTop + (artistSlot.clientHeight - height) / 2}px`);
+// The seed packet opens three ways:
+// 1. Drag the scissors along the dashed seam. Past 85% the strip tears off.
+// 2. Tap (or press Enter on) the scissors, and they cut the seam by themselves.
+// 3. Scroll. The first 40% of the way through the hero tears the strip off; from 30% on, the body drops away as the site comes up.
+// Once the scissors have cut the strip, it stays off, even if you scroll back up.
+const packet = document.querySelector('.packet');
+const hero = document.getElementById('home');
+const scissors = packet && packet.querySelector('.scissors');
+const seam = packet && packet.querySelector('.packet-tear');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let cut = 0;
+let torn = false;
+let scrollTear = 0;
+const showTear = () => packet.style.setProperty('--tear', (torn ? 1 : scrollTear).toFixed(3));
+// The cut only moves forward: you can't un-cut paper.
+const setCut = value => {
+  cut = Math.max(cut, Math.min(1, value));
+  packet.style.setProperty('--cut', cut.toFixed(3));
+};
+function finishCut() {
+  if (torn) return;
+  torn = true;
+  setCut(1);
+  packet.classList.add('is-torn');
+  showTear();
+  setTimeout(() => document.getElementById('idea').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }), reduceMotion ? 0 : 700);
 }
-artistSlot.addEventListener('load', alignArtistOpening);
-new ResizeObserver(alignArtistOpening).observe(heroPaper);
-alignArtistOpening();
+if (packet && scissors) {
+  let pressed = false;
+  let dragged = false;
+  let startX = 0;
+  scissors.addEventListener('pointerdown', event => {
+    pressed = true;
+    dragged = false;
+    startX = event.clientX;
+    packet.classList.add('is-cutting');
+    scissors.setPointerCapture(event.pointerId);
+  });
+  scissors.addEventListener('pointermove', event => {
+    if (!pressed || torn) return;
+    if (Math.abs(event.clientX - startX) > 4) dragged = true;
+    if (!dragged) return;
+    const box = seam.getBoundingClientRect();
+    setCut((event.clientX - box.left - 22) / (box.width - 44));
+    if (cut >= 0.85) finishCut();
+  });
+  const release = () => { pressed = false; };
+  scissors.addEventListener('pointerup', release);
+  scissors.addEventListener('pointercancel', release);
+  // A tap or Enter runs the cut from wherever the scissors are to the end of the seam.
+  scissors.addEventListener('click', () => {
+    if (dragged) { dragged = false; return; }
+    if (torn) return;
+    packet.classList.add('is-cutting');
+    if (reduceMotion) { finishCut(); return; }
+    const from = cut;
+    const start = performance.now();
+    const step = now => {
+      const t = Math.min(1, (now - start) / 900);
+      const eased = t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+      setCut(from + (1 - from) * eased);
+      if (t < 1) requestAnimationFrame(step);
+      else finishCut();
+    };
+    requestAnimationFrame(step);
+  });
+}
+if (packet && !reduceMotion) {
+  let queued = false;
+  const tear = () => {
+    queued = false;
+    const progress = Math.min(1, Math.max(0, scrollY / (hero.offsetHeight * 0.7)));
+    scrollTear = Math.min(1, progress / 0.4);
+    showTear();
+    packet.style.setProperty('--open', Math.max(0, (progress - 0.3) / 0.7).toFixed(3));
+  };
+  addEventListener('scroll', () => {
+    if (!queued) { queued = true; requestAnimationFrame(tear); }
+  }, { passive: true });
+  tear();
+}
 
 const headerVideo = document.querySelector('.footer-video');
 if (headerVideo) {

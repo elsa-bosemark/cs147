@@ -1,194 +1,253 @@
-/* Etch design system tokens. Values come from Etch · Design system v2 in the Etch Website Figma file. */
+/* Etch design system tokens. Values come from the Etch hi-fi design system (A8 Prototype Figma file, Design System page). */
 :root{
---paper:#f4f4f2;--surface:#fff;--canvas:#e7e8e5;--ink:#151715;--on-ink:var(--paper);--ink-soft:#60645e;--ink-muted:#9a9e98;--line:#e1e2de;
---photo-white:#fff;--photo-ink:#151715;--focus:#0a84ff;
-/* Glass/Light: a white 80% fill, a white edge with a bright top line, and a soft drop. Controls over photos and slides keep it in dark mode too. */
---glass-light:rgba(255,255,255,.8);--glass-light-edge:#fff;--glass-light-shine:inset 0 1px 0 rgba(255,255,255,.9);
---glass:var(--glass-light);--glass-edge:var(--glass-light-edge);--glass-shine:var(--glass-light-shine);--blur-glass:15px;
---shadow-glass:0 4px 14px rgba(0,0,0,.08);
---shadow-print:0 1px 1px rgba(0,0,0,.08),0 6px 14px rgba(0,0,0,.14);
---shadow-lift:0 2px 4px rgba(0,0,0,.08),0 18px 36px rgba(0,0,0,.18);
-/* Titles use SF Pro Rounded and everything else SF Pro. Nunito and Inter stand in where Apple fonts are missing. */
---font-rounded:ui-rounded,"SF Pro Rounded","Nunito",system-ui,sans-serif;--font-sans:-apple-system,BlinkMacSystemFont,"Inter",system-ui,"Segoe UI",sans-serif;
+/* Color: one ink for text, actions and strong lines; transparent ink for every divider and ring. */
+--paper:#f7f7f5;--card:#fff;
+--sunken:#edebe6;--kraft:#dccba9;
+--ink:#2a2723;--ink-body:#3e3830;--ink-muted:#5e574d;--on-ink:#fbf8f2;--danger:#b23a32;
+--line-hairline:rgba(42,39,35,.08);--line-divider:rgba(42,39,35,.1);--line-subtle:rgba(42,39,35,.12);--line-perforation:rgba(42,39,35,.22);--line-dashed:rgba(42,39,35,.28);--line-link:rgba(42,39,35,.35);
+--scrim:rgba(42,39,35,.42);--glass-bar:rgba(247,247,245,.66);--glass-card:rgba(255,255,255,.72);
+/* Type: Newsreader is the voice, IBM Plex Mono is the label. Regular weight only, no italics. */
+--font-serif:'Newsreader',Georgia,'Times New Roman',serif;--font-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
 --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-12:48px;--space-16:64px;
---radius-md:14px;--radius-lg:20px;--radius-xl:26px;--radius-2xl:30px;--radius-pill:999px;
+--radius-md:14px;--radius-xl:22px;--radius-sheet:34px;--radius-pill:999px;
+/* Shadows are warm and soft, with a negative spread so cards lift off the paper without a grey halo. */
+--shadow-seed:drop-shadow(0 8px 12px rgba(60,45,30,.14));
+--shadow-photo:0 22px 34px -18px rgba(40,30,20,.5);
+--shadow-lift:0 30px 44px -20px rgba(40,30,20,.55);
+--shadow-icon:0 6px 14px -8px rgba(40,30,20,.45);
+--shadow-present:0 10px 24px -14px rgba(60,45,30,.4);
+--shadow-flower:drop-shadow(0 14px 16px rgba(60,60,80,.12));
 --ease:cubic-bezier(.2,.8,.2,1);
---gutter:max(16px,env(safe-area-inset-left),env(safe-area-inset-right));
+/* Paper edges: the crimped top of a seed packet (50 teeth, 9px) and the torn top of a note (25 teeth, 4px). */
+--crimp:polygon(0% 9px,2% 0px,4% 9px,6% 0px,8% 9px,10% 0px,12% 9px,14% 0px,16% 9px,18% 0px,20% 9px,22% 0px,24% 9px,26% 0px,28% 9px,30% 0px,32% 9px,34% 0px,36% 9px,38% 0px,40% 9px,42% 0px,44% 9px,46% 0px,48% 9px,50% 0px,52% 9px,54% 0px,56% 9px,58% 0px,60% 9px,62% 0px,64% 9px,66% 0px,68% 9px,70% 0px,72% 9px,74% 0px,76% 9px,78% 0px,80% 9px,82% 0px,84% 9px,86% 0px,88% 9px,90% 0px,92% 9px,94% 0px,96% 9px,98% 0px,100% 9px,100% 100%,0 100%);
+--note-edge:polygon(0% 2px,4% 6px,8% 2px,12% 6px,16% 2px,20% 6px,24% 2px,28% 6px,32% 2px,36% 6px,40% 2px,44% 6px,48% 2px,52% 6px,56% 2px,60% 6px,64% 2px,68% 6px,72% 2px,76% 6px,80% 2px,84% 6px,88% 2px,92% 6px,96% 2px,100% 6px,100% 100%,0 100%);
+--gutter:max(24px,env(safe-area-inset-left),env(safe-area-inset-right));
 --content-inset:max(var(--gutter),calc((100% - 1120px) / 2));
 --section-space:var(--space-16);
-/* The header is as tall as the tab bar plus the space above and below it. */
---bar-top:var(--space-4);--header-height:calc(50px + 2 * var(--bar-top));
-/* Background · Ambient: soft sage, blue and sand blobs behind the page. */
---ambient:url('assets/ambient.svg');
+--header-height:88px;
 --footer-reveal-height:clamp(260px,45vh,520px);
-color-scheme:light dark}
-@media(prefers-color-scheme:dark){:root{
---paper:#121412;--surface:#1c1f1c;--canvas:#0b0c0b;--ink:#eeefeb;--ink-soft:#b3b7b0;--ink-muted:#6f746d;--line:#2a2e2a;
-/* Glass/Dark: a 60% fill with a faint white edge. */
---glass:rgba(31,31,33,.6);--glass-edge:rgba(255,255,255,.12);--glass-shine:inset 0 1px 0 rgba(255,255,255,.18);--blur-glass:10px;
---shadow-glass:0 4px 14px rgba(0,0,0,.3);
---shadow-print:0 1px 1px rgba(0,0,0,.3),0 6px 14px rgba(0,0,0,.45);
---shadow-lift:0 2px 4px rgba(0,0,0,.35),0 18px 36px rgba(0,0,0,.55);
-/* The blobs are pale, so dark mode stays on plain paper. */
---ambient:none}}
+color-scheme:light}
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:var(--header-height);-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.45 var(--font-sans);-webkit-font-smoothing:antialiased}
+/* The page is a sheet of paper, so it does not stretch past its edges when you pull it with a trackpad. */
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-height);-webkit-text-size-adjust:100%;background:var(--paper);overscroll-behavior:none}
+body{overscroll-behavior:none}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.42 var(--font-serif);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 h1,h2,h3,p,figure{margin:0}
-h1,h2{font-family:var(--font-rounded);font-weight:600}
-/* Title/Screen. The second line of a heading is the quieter secondary ink, not a second typeface. */
-h2{font-size:40px;line-height:1.05;letter-spacing:-.6px}
-h1 em,h2 em{font-style:normal;color:var(--ink-soft)}
-/* Title/Sheet */
-h3{font:600 24px/1.2 var(--font-sans);letter-spacing:-.4px}
+h1,h2,h3{font-weight:400}
+/* Display/Hero. The second line of a heading is the muted ink, not a second typeface. */
+h2{font-size:48px;line-height:1.02;letter-spacing:-.6px}
+h1 em,h2 em{font-style:normal;color:var(--ink-muted)}
+/* Title/Seed */
+h3{font-size:24px;line-height:1.1}
 p+p{margin-top:var(--space-3)}
-:where(a,summary,button):focus-visible{outline:3px solid var(--focus);outline-offset:2px}
-/* Label/Eyebrow */
-.eyebrow{display:block;font:600 11px/1.2 var(--font-sans);letter-spacing:.6px;text-transform:uppercase;color:var(--ink-soft)}
-.glass,.steps article{background:var(--glass);border:1px solid var(--glass-edge);box-shadow:var(--glass-shine),var(--shadow-glass);-webkit-backdrop-filter:blur(var(--blur-glass));backdrop-filter:blur(var(--blur-glass))}
+:where(a,summary,button):focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+/* Mono/Eyebrow */
+.eyebrow{display:block;margin-bottom:var(--space-4);font:400 11px/1.2 var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--ink-muted)}
 /* Button/Primary */
-.skip-link{position:fixed;left:var(--gutter);top:-100px;z-index:30;display:flex;align-items:center;min-height:52px;padding:0 var(--space-6);border-radius:var(--radius-xl);background:var(--ink);color:var(--on-ink);font:600 16px/22px var(--font-sans);text-decoration:none}
+.skip-link{position:fixed;left:var(--gutter);top:-100px;z-index:30;display:flex;align-items:center;height:50px;padding:0 var(--space-5);border-radius:var(--radius-pill);background:var(--ink);color:var(--on-ink);font:400 12px/1 var(--font-mono);letter-spacing:1px;text-transform:uppercase;text-decoration:none}
 .skip-link:focus{top:var(--space-4)}
 
-/* The wordmark sits at the top; the page and header share one fixed ambient background so they read as one surface. */
-.site-header,main{background:var(--paper) var(--ambient) center/100% 100% fixed}
-/* The header sticks to the top of the window. Its fixed ambient background lines up with the page below it. */
-.site-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);min-height:var(--header-height);padding:0 var(--content-inset)}
-.brand{font:600 30px/1 var(--font-rounded);letter-spacing:-.6px;color:var(--ink);text-decoration:none;border-radius:var(--radius-md)}
-/* Tab bar: a glass pill at the right of the header, with the ink pill on the section you are in. */
-.tab-bar{display:flex;gap:var(--space-1);padding:5px;border-radius:var(--radius-pill)}
-.tab-bar a{display:flex;align-items:center;gap:6px;padding:10px var(--space-4);border-radius:var(--radius-pill);font:600 14px/20px var(--font-sans);color:var(--ink-soft);text-decoration:none;white-space:nowrap;transition:background-color .3s var(--ease),color .3s var(--ease)}
-.tab-bar a:hover{color:var(--ink)}
-.tab-bar a[aria-current]{background:var(--ink);color:var(--on-ink)}
-/* Each tab carries an ink icon and a paper icon; it shows the one that contrasts with its own fill. */
-.tab-bar img{display:none}
-.tab-bar a:not([aria-current]) .icon-ink,.tab-bar a[aria-current] .icon-paper{display:block}
-@media(prefers-color-scheme:dark){
-.tab-bar a:not([aria-current]) .icon-ink,.tab-bar a[aria-current] .icon-paper{display:none}
-.tab-bar a:not([aria-current]) .icon-paper,.tab-bar a[aria-current] .icon-ink{display:block}}
+/* Header: the app's frosted tab bar, turned on its side. Frosted paper with a dashed edge, the wordmark at the left. */
+.site-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);min-height:var(--header-height);padding:0 var(--content-inset);background:var(--glass-bar);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1.5px dashed var(--line-dashed)}
+/* Display/Wordmark with the dashed squiggle underline. */
+.brand{display:flex;flex-direction:column;font:400 40px/1 var(--font-serif);letter-spacing:-.5px;color:var(--ink);text-decoration:none}
+.brand svg,.squiggle{display:block;width:84px;height:12px;margin-top:2px;fill:none;stroke:var(--ink-muted);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:5 4}
+.brand:hover{color:var(--ink)}
+/* Tabs: icon and mono label; the tab you are in is ink with a dashed marker under it. */
+.tabs{display:flex;gap:var(--space-2)}
+.tabs a{position:relative;display:flex;align-items:center;gap:var(--space-2);min-height:44px;padding:0 var(--space-3);font:400 11px/1 var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--ink-muted);text-decoration:none;white-space:nowrap;transition:color .3s var(--ease)}
+.tabs a:hover,.tabs a[aria-current]{color:var(--ink)}
+.tabs svg{flex:none;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tabs a::after{content:'';position:absolute;left:50%;bottom:0;width:30px;height:6px;margin-left:-15px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 6'%3E%3Cpath d='M2 3h26' stroke='%235E574D' stroke-width='1.6' stroke-linecap='round' stroke-dasharray='4 3'/%3E%3C/svg%3E") center/30px 6px no-repeat;opacity:0;transform:scaleX(.4);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.tabs a[aria-current]::after{opacity:1;transform:none}
 
-/* Full-bleed garden photo behind a rounded paper sheet; the artist is cut out of the sheet. */
-.hero{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;min-height:620px;height:calc(100svh - 78px);max-height:900px;padding:var(--space-12) var(--gutter)}
-.hero-photo{position:absolute;inset:0;z-index:-1;background:url('assets/garden.jpg') center 53%/cover}
-.hero-paper{position:relative;isolation:isolate;width:min(920px,100%);padding:var(--space-8) 48px}
-.hero-paper::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--paper);border-radius:var(--radius-2xl);
--webkit-mask-image:url('assets/drawing-silhouette.png'),linear-gradient(#000 0 0);-webkit-mask-size:var(--cutout-width,0px) var(--cutout-height,0px),100% 100%;-webkit-mask-position:var(--cutout-x,0px) var(--cutout-y,0px),0 0;-webkit-mask-repeat:no-repeat;-webkit-mask-composite:xor;
-mask-image:url('assets/drawing-silhouette.png'),linear-gradient(#000 0 0);mask-size:var(--cutout-width,0px) var(--cutout-height,0px),100% 100%;mask-position:var(--cutout-x,0px) var(--cutout-y,0px),0 0;mask-repeat:no-repeat;mask-composite:exclude}
-.hero-main{display:grid;grid-template-columns:42% 58%;align-items:center;gap:10px}
-.drawing-cutout{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;opacity:0;pointer-events:none}
-.hero-heading{padding-left:var(--space-4)}
-/* Display/Clock */
-h1{font-weight:700;font-size:clamp(72px,10vw,128px);line-height:.95;letter-spacing:-.02em}
-.hero-subtitle{display:block;margin-top:var(--space-4);font:600 36px/1.1 var(--font-rounded);letter-spacing:-.6px}
+/* Main is one sheet of paper with two blurred photos glowing through it, like every paper screen in the app.
+   The glow is fixed to the window; the sheet's clip keeps it inside the paper. */
+main{position:relative;z-index:1;background:var(--paper);clip-path:polygon(0 0,100% 0,100% calc(100% - 8px),97.5% 100%,95% calc(100% - 8px),92.5% 100%,90% calc(100% - 8px),87.5% 100%,85% calc(100% - 8px),82.5% 100%,80% calc(100% - 8px),77.5% 100%,75% calc(100% - 8px),72.5% 100%,70% calc(100% - 8px),67.5% 100%,65% calc(100% - 8px),62.5% 100%,60% calc(100% - 8px),57.5% 100%,55% calc(100% - 8px),52.5% 100%,50% calc(100% - 8px),47.5% 100%,45% calc(100% - 8px),42.5% 100%,40% calc(100% - 8px),37.5% 100%,35% calc(100% - 8px),32.5% 100%,30% calc(100% - 8px),27.5% 100%,25% calc(100% - 8px),22.5% 100%,20% calc(100% - 8px),17.5% 100%,15% calc(100% - 8px),12.5% 100%,10% calc(100% - 8px),7.5% 100%,5% calc(100% - 8px),2.5% 100%,0 calc(100% - 8px))}
+main>section{position:relative;z-index:1}
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.glow img{position:absolute;border-radius:50%;object-fit:cover;filter:blur(70px) saturate(1.15)}
+.glow img:first-child{right:-6vw;top:12vh;width:min(46vw,560px);aspect-ratio:1;opacity:.5}
+.glow img:last-child{left:-14vw;bottom:-10vh;width:min(52vw,620px);aspect-ratio:1;opacity:.55}
+
+/* Hero: you arrive at today's seed packet, the same kraft packet as the app's Home screen.
+   Scrolling tears the strip off along the dashed line, and the packet falls open to show the site.
+   --tear (0 to 1) moves the strip; --open (0 to 1) drops the body. script.js sets both from the scroll position. */
+.hero{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;min-height:620px;height:calc(100svh - var(--header-height));max-height:960px;padding:var(--space-12) var(--gutter)}
+.packet{--seam-top:82px;--seam-inset:var(--space-4);position:relative;width:min(920px,100%);transform:rotate(-.6deg)}
+.packet-strip,.packet-body{position:relative;isolation:isolate}
+.packet-strip::before,.packet-body::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--kraft) url('assets/kraft.webp') 0 0/200px}
+.packet-strip,.packet-body{color:var(--ink)}
+.packet .eyebrow{margin:0;color:var(--ink-body)}
+/* The strip: a crimped top, torn off toward the top right. */
+.packet-strip{z-index:2;display:flex;justify-content:space-between;align-items:flex-end;height:64px;padding:0 var(--space-6) 14px;filter:drop-shadow(0 6px 8px rgba(60,45,30,.18));transform-origin:0 100%;
+transform:translate(calc(var(--tear,0) * 170px),calc(var(--tear,0) * -190px - var(--cut,0) * 10px)) rotate(calc(var(--tear,0) * 26deg));opacity:calc(1 - var(--tear,0))}
+.packet-strip::before{clip-path:var(--crimp)}
+/* When the scissors finish the cut, the strip flies off on its own instead of with the scroll. */
+.packet.is-torn .packet-strip{transition:transform .8s var(--ease),opacity .6s var(--ease)}
+/* The body: its top is the torn line under the strip. */
+.packet-body{margin-top:-2px;padding:var(--space-5) var(--space-8) var(--space-8);filter:drop-shadow(0 18px 26px rgba(60,45,30,.3));
+transform:translateY(calc(var(--open,0) * 90px)) scale(calc(1 - var(--open,0) * .05));opacity:calc(1 - var(--open,0) * .85)}
+.packet-body::before{clip-path:var(--note-edge)}
+/* The seam the strip tears along, with the scissors on it. --cut (0 to 1) is how far the scissors have gone:
+   the dashes behind them are cut away and the strip lifts a little. */
+/* The seam sits on the packet itself, above both the strip and the body, so nothing covers the scissors. */
+.packet-tear{position:absolute;z-index:4;left:var(--seam-inset);right:var(--seam-inset);top:var(--seam-top);height:0;opacity:calc(1 - var(--tear,0))}
+/* The scissors travel inside the seam, so the track is the seam minus one scissors width. */
+.packet-tear::before{content:'';position:absolute;left:calc(var(--cut,0) * (100% - 44px) + 22px);right:78px;top:0;border-top:1.5px dashed rgba(62,56,48,.5)}
+/* "Tear here" at the end of the line, as on the app's packet. It fades as the scissors reach it. */
+.packet-tear-label{position:absolute;right:0;top:-5px;font:400 10px/1 var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--ink-body);white-space:nowrap;opacity:calc(1 - max(0, var(--cut,0) - .6) * 2.5)}
+/* Icon button with the scissors: ink, so it reads as the one thing to press. Drag it along the line, or tap it. */
+.scissors{position:absolute;top:-22px;left:calc(var(--cut,0) * (100% - 44px));display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:var(--ink);color:var(--on-ink);box-shadow:var(--shadow-icon);cursor:grab;touch-action:none;animation:nudge-intro 1.5s var(--ease) .4s 4,nudge 3.2s var(--ease) 6.4s infinite;transition:transform .3s var(--ease)}
+.scissors:hover{transform:scale(1.08)}
+.scissors:active{cursor:grabbing}
+.scissors svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+/* A soft ring pulses out and the scissors nudge along the line: four quick times as soon as the page opens, then once every few seconds, until someone touches them. */
+.scissors::after{content:'';position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--ink);opacity:0;animation:pulse-intro 1.5s ease-out .4s 4,pulse 3.2s ease-out 6.4s infinite}
+.packet.is-cutting .scissors,.packet.is-cutting .scissors::after{animation:none}
+@keyframes nudge-intro{0%,100%{translate:0}35%{translate:22px}65%{translate:6px}}
+@keyframes pulse-intro{0%{transform:scale(1);opacity:.55}100%{transform:scale(2);opacity:0}}
+@keyframes nudge{0%,62%,100%{translate:0}72%{translate:18px}82%{translate:4px}90%{translate:10px}}
+@keyframes pulse{0%,55%{transform:scale(1);opacity:0}60%{opacity:.5}100%{transform:scale(1.9);opacity:0}}
+.packet-main{display:grid;grid-template-columns:58% 42%;align-items:center;gap:var(--space-6);margin-top:var(--space-6)}
+/* The packet picture: the garden photo printed in the shape of a person sketching. */
+.packet-art{width:100%;aspect-ratio:1;background:url('assets/garden.jpg') 30% 55%/cover;-webkit-mask:url('assets/drawing-silhouette.png') center/contain no-repeat;mask:url('assets/drawing-silhouette.png') center/contain no-repeat}
+.packet-copy .eyebrow{margin-bottom:var(--space-3)}
+/* Display/Wordmark XL, at packet size. */
+h1{font-size:clamp(88px,12vw,148px);line-height:.92;letter-spacing:-.025em}
+h1 .squiggle{width:clamp(150px,20vw,230px);height:auto;aspect-ratio:92/12;margin:var(--space-2) 0 0 4px;stroke:var(--ink-body);stroke-width:1.2}
+.hero-subtitle{display:block;margin-top:var(--space-5);font-size:34px;line-height:1.1;letter-spacing:-.4px}
+.hero-subtitle em{color:var(--ink-body)}
 
 .section-wrap{padding:var(--section-space) var(--content-inset)}
 
-/* Introduction: reading text beside our concept video. */
+/* Introduction: reading text beside our concept video, which sits in a white print frame. */
 .idea-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:center}
 .idea h2{margin-bottom:var(--space-6)}
-.idea p{max-width:460px;font-size:17px;line-height:1.55}
-/* Our concept video plays in place, at its own 16:9 shape. */
-.idea-video{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(--radius-lg);background:#000;box-shadow:var(--shadow-print)}
+.idea p{max-width:460px;font-size:18px;line-height:1.5;color:var(--ink-body)}
+.idea-video-wrap{padding:8px;background:var(--card);box-shadow:var(--shadow-photo);transform:rotate(1deg)}
+.idea-video{display:block;width:100%;aspect-ratio:16/9;border:0;background:#000}
 
-/* Concept: three numbered steps, each on a glass card. */
+/* Concept: three seed cards, numbered like seed packets, each with the pressed flower it grows into. */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-8);margin-top:var(--space-12)}
-.steps article{padding:var(--space-6);border-radius:var(--radius-xl)}
-.steps .eyebrow{margin-bottom:var(--space-3)}
-.steps h3{margin-bottom:var(--space-3)}
-.steps p{color:var(--ink-soft)}
+.steps article{position:relative;isolation:isolate;display:flex;flex-direction:column;padding:38px var(--space-6) var(--space-6);filter:var(--shadow-seed)}
+.steps article:nth-child(1){transform:rotate(-.6deg)}
+.steps article:nth-child(2){transform:rotate(.5deg)}
+.steps article:nth-child(3){transform:rotate(-.4deg)}
+.steps article::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--card);clip-path:var(--crimp)}
+.steps article::after{content:'';position:absolute;left:var(--space-2);right:var(--space-2);top:17px;border-top:1.5px dashed var(--line-perforation)}
+/* Mono/Tag */
+.seed-no{font:400 10px/1 var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--ink-muted)}
+/* Two title lines are kept free so the flower never sits on the text. */
+.steps h3{min-height:2.2em;margin:var(--space-2) 92px var(--space-3) 0}
+.steps p{font-size:16px;color:var(--ink-body)}
+.seed-flower{position:absolute;top:22px;right:14px;width:84px;height:auto;filter:var(--shadow-flower);transform:rotate(-8deg);transition:transform .6s var(--ease)}
+.steps article:nth-child(2) .seed-flower{transform:rotate(6deg)}
+.steps article:hover .seed-flower{transform:rotate(0) translateY(-6px) scale(1.06)}
 
-/* Our work: equal cards in the order we made them, closing with a bento of four cards beside the featured piece. */
+/* Our work: equal prints in the order we made them, closing with a bento of four prints beside the featured piece. */
 .project-heading{margin-bottom:var(--space-8)}
 .work{--work-gap:var(--space-6);--work-columns:4;display:flex;flex-wrap:wrap;gap:var(--space-12) var(--work-gap)}
 .work-card{flex:0 0 calc((100% - (var(--work-columns) - 1) * var(--work-gap)) / var(--work-columns));min-width:0;display:flex;flex-direction:column}
-/* Work we haven't made yet waits on plain gray, so the finished covers are the color on the page. */
-.work-cover{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius-lg);background:var(--canvas)}
+.work-cover{display:block;position:relative;aspect-ratio:16/10;overflow:hidden}
 .work-cover img{display:block;width:100%;height:100%;object-fit:cover}
-/* Finished covers sit on the page like prints and lift when you point at them. The glass corner button says the cover opens the PDF. */
-a.work-cover{box-shadow:var(--shadow-print);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-a.work-cover img{transition:transform .6s var(--ease)}
-a.work-cover:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
-a.work-cover:hover img{transform:scale(1.04)}
-.work-open{--glass:var(--glass-light);--glass-edge:var(--glass-light-edge);--glass-shine:var(--glass-light-shine);--blur-glass:15px;position:absolute;top:var(--space-3);right:var(--space-3);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;color:var(--photo-ink);transition:color .3s var(--ease)}
-/* The hover fill is a solid ink disc that fades in over the whole button, edge included, so no light ring shows while it fades. */
-.work-open::before{content:'';position:absolute;inset:-1px;border-radius:50%;background:var(--photo-ink);opacity:0;transition:opacity .3s var(--ease)}
-a.work-cover:hover .work-open::before{opacity:1}
-.work-open svg{position:relative;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
-a.work-cover:hover .work-open{color:var(--photo-white)}
+/* Finished covers are prints: an 8px white frame and a warm shadow. They lift when you point at them. */
+a.work-cover{padding:8px;background:var(--card);box-shadow:var(--shadow-photo);transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+a.work-cover:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:var(--shadow-lift)}
+/* Icon button, White: the corner button says the cover opens the PDF. It fills with ink on hover. */
+.work-open{position:absolute;top:var(--space-4);right:var(--space-4);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--card);color:var(--ink);box-shadow:var(--shadow-icon);transition:background-color .3s var(--ease),color .3s var(--ease)}
+a.work-cover:hover .work-open{background:var(--ink);color:var(--on-ink)}
+.work-open svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .4s var(--ease)}
 a.work-cover:hover .work-open svg{transform:translate(2px,-2px)}
-/* Pointing at a piece we haven't made yet makes the letters hop, one after the next. */
-.work-soon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;white-space:pre;font:600 22px/1 var(--font-rounded);color:var(--ink-soft)}
+/* Work we haven't made yet is a sealed kraft seed packet: crimped top, a tear line, and a mono label. */
+div.work-cover{background:var(--kraft) url('assets/kraft.webp') 0 0/200px;clip-path:var(--crimp)}
+div.work-cover::before{content:'';position:absolute;left:var(--space-3);right:var(--space-3);top:22px;border-top:1.5px dashed rgba(62,56,48,.45)}
+.work-soon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;white-space:pre;font:400 12px/1 var(--font-mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-body)}
 .work-soon span{display:inline-block}
 .work-card.is-pending:hover .work-soon span{animation:hop .6s var(--ease) both;animation-delay:calc(var(--i) * 35ms)}
 @keyframes hop{40%{transform:translateY(-9px) rotate(-6deg)}70%{transform:translateY(2px)}}
 .work-body{flex:1;display:flex;flex-direction:column}
-/* Body XL/Semibold */
-.work-body h3{margin:var(--space-4) 0 var(--space-3);font-size:20px;line-height:1.3;letter-spacing:0}
-/* One row per file, right under the title. Ready files are ink with an underline; files still to come are muted. */
-.work-files{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
-.work-file{display:inline-flex;align-items:center;gap:var(--space-2);padding:0;border:0;background:none;font:500 15px/21px var(--font-sans);color:var(--ink);text-decoration:none;cursor:pointer}
-.work-file svg{flex:none;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--ease)}
-.work-file span{text-decoration:underline 1px color-mix(in srgb,currentColor 30%,transparent);text-underline-offset:4px;transition:text-decoration-color .3s var(--ease)}
+/* Title/Row */
+.work-body h3{margin:var(--space-5) 0 var(--space-3);font-size:21px;line-height:1.15}
+/* Text links, one row per file. Ready files are ink with a soft underline; files still to come are muted. */
+.work-files{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.work-file{display:inline-flex;align-items:center;gap:var(--space-2);min-height:28px;padding:0;border:0;background:none;font:400 16px/1.2 var(--font-serif);color:var(--ink);text-decoration:none;cursor:pointer}
+.work-file svg{flex:none;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s var(--ease)}
+.work-file span{text-decoration:underline 1px var(--line-link);text-underline-offset:4px;transition:text-decoration-color .3s var(--ease)}
 .work-file:hover span{text-decoration-color:currentColor}
 .work-file:hover svg{transform:translateX(2px)}
-.work-file.is-pending{color:var(--ink-muted);cursor:default}
+.work-file.is-pending{color:var(--ink-muted);opacity:.7;cursor:default}
 .work-file.is-pending span{text-decoration:none}
 .work-file.is-pending:hover svg{transform:none}
-/* Two columns of cards on the left match the four-column row above; the featured piece fills the right half. */
+/* Two columns of prints on the left match the four-column row above; the featured piece fills the right half. */
 .work-bento{flex:0 0 100%;display:flex;gap:var(--work-gap)}
 .work-side{--work-columns:2;flex:1 1 0;min-width:0;display:flex;flex-wrap:wrap;gap:var(--space-12) var(--work-gap)}
-/* The featured piece: its title on a glass card over a cover as tall as the cards beside it. */
 .work-featured{flex:1 1 0;position:relative}
 .work-featured .work-cover{flex:1;aspect-ratio:auto;min-height:320px}
-.work-featured .work-body{position:absolute;left:var(--space-4);bottom:var(--space-4);max-width:min(440px,calc(100% - 2 * var(--space-4)));padding:var(--space-5) var(--space-6);border-radius:var(--radius-xl)}
-/* Title/Page */
-.work-featured .work-body h3{margin-top:0;font-size:28px;line-height:1.15;letter-spacing:-.4px}
+/* The featured title sits on a present card: frosted white, a white edge and a dashed bow on top. */
+.work-featured .work-body{position:absolute;left:var(--space-5);bottom:var(--space-5);max-width:min(440px,calc(100% - 2 * var(--space-5)));padding:var(--space-5) var(--space-6);background:var(--glass-card);border:1px solid #fff;box-shadow:var(--shadow-present);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.work-featured .work-body::before{content:'';position:absolute;left:50%;top:-20px;width:58px;height:40px;margin-left:-29px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 58 40'%3E%3Cpath d='M29 20 C 14 2, 2 10, 10 20 C 18 28, 26 22, 29 20 C 32 22, 40 28, 48 20 C 56 10, 44 2, 29 20 Z M29 20 L 20 38 M29 20 L 38 38' fill='none' stroke='%235E574D' stroke-width='1.5' stroke-linecap='round' stroke-dasharray='4 3'/%3E%3C/svg%3E") center/contain no-repeat}
+/* Title/Bouquet */
+.work-featured .work-body h3{margin-top:0;font-size:28px;line-height:1.1}
 
-/* Videos play in a sheet over the page. */
-.video-dialog{width:min(960px,calc(100% - 2 * var(--gutter)));max-width:none;padding:0;border:0;border-radius:var(--radius-2xl);background:var(--paper);color:var(--ink);overflow:hidden}
-.video-dialog[open]{animation:sheet-rise .3s var(--ease)}
-.video-dialog::backdrop{background:rgba(21,23,21,.6)}
-.video-dialog form{display:flex;justify-content:flex-end;padding:var(--space-3)}
-/* Glass button, circle: icon-only actions such as close. */
-.video-close{display:grid;place-items:center;width:44px;height:44px;padding:0;border-radius:50%;cursor:pointer}
-.video-close img{display:block}
+/* Videos open in a sheet of paper with a torn top edge, over the ink scrim. */
+.video-dialog{width:min(960px,calc(100% - 2 * var(--gutter)));max-width:none;padding:var(--space-4) var(--space-4) var(--space-4);border:0;background:var(--card);color:var(--ink);clip-path:var(--note-edge);overflow:hidden}
+.video-dialog[open]{animation:unfold .6s var(--ease) both}
+.video-dialog::backdrop{background:var(--scrim)}
+.video-dialog form{display:flex;justify-content:flex-end;padding:var(--space-2) 0 var(--space-3)}
+/* Icon button, Close */
+.video-close{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:var(--card);color:var(--ink);box-shadow:0 2px 8px -4px rgba(0,0,0,.3);cursor:pointer}
+.video-close svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
 .video-frame{aspect-ratio:16/9;background:#000}
 .video-frame iframe{display:block;width:100%;height:100%;border:0}
-@keyframes sheet-rise{from{opacity:0;transform:translateY(40px)}}
+@keyframes unfold{from{opacity:0;transform:translateY(24px) rotate(3deg) scale(.92)}}
 
-/* Team portraits are polaroids: white prints with small tilts, never a tidy grid. */
+/* Team portraits are prints: white frames with small tilts, never a tidy grid. */
 .team-heading{margin-bottom:var(--space-12)}
 .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-8)}
 .team-card:nth-child(1){--tilt:-3deg}
 .team-card:nth-child(2){--tilt:2deg;margin-top:var(--space-6)}
 .team-card:nth-child(3){--tilt:-1.5deg;margin-top:var(--space-2)}
 .team-card:nth-child(4){--tilt:3deg;margin-top:var(--space-8)}
-.portrait{position:relative;aspect-ratio:4/5;padding:10px 10px 14px;background:var(--photo-white);border-radius:3px;box-shadow:var(--shadow-print);transform:perspective(900px) translateY(var(--lift,0px)) rotate(var(--tilt,0deg)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--grow,1));transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.portrait{position:relative;aspect-ratio:4/5;padding:8px 8px 14px;background:var(--card);box-shadow:var(--shadow-photo);transform:perspective(900px) translateY(var(--lift,0px)) rotate(var(--tilt,0deg)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--grow,1));transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
 /* Pointing at a print straightens it and lifts it toward you. It tips after the pointer, with a glint of light where the pointer is. */
-.portrait::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.5),transparent 60%);mix-blend-mode:soft-light;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
+.portrait::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.5),transparent 60%);mix-blend-mode:soft-light;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
 @media(hover:hover){
 .team-card .portrait:hover{--tilt:0deg;--lift:-10px;--grow:1.04;box-shadow:var(--shadow-lift);transition:transform .2s ease-out,box-shadow .6s var(--ease)}
 .portrait:hover::after{opacity:1}}
 .portrait img{display:block;object-position:center 35%}
-.portrait svg{display:block;width:100%;height:100%;background:#e7e8e5;fill:none;stroke:var(--photo-ink);stroke-width:1.3}
-.portrait>span{position:absolute;left:0;right:0;bottom:26px;text-align:center;font:400 13px/1.35 var(--font-sans);color:var(--photo-ink)}
-/* Title/Place, then Callout/Regular. */
-.team-card h3{margin-top:var(--space-6);text-align:center;font:600 22px/23px var(--font-rounded);letter-spacing:0}
-.team-card p{margin-top:6px;font-size:14px;line-height:20px;color:var(--ink-soft);white-space:pre-line;text-align:center}
+.portrait svg{display:block;width:100%;height:100%;background:var(--sunken);fill:none;stroke:var(--ink);stroke-width:1.3}
+.portrait>span{position:absolute;left:0;right:0;bottom:26px;text-align:center;font:400 10px/1.35 var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--ink-muted)}
+/* Title/Seed, then Mono/Eyebrow. */
+.team-card h3{margin-top:var(--space-6);text-align:center;font-size:26px;line-height:1}
+.team-card p{margin-top:var(--space-2);font:400 10px/1.7 var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--ink-muted);white-space:pre-line;text-align:center}
 
-/* The page lifts away like a sheet, with rounded corners, to reveal the garden photo underneath. */
+/* The page is one sheet that ends in a torn edge. Under it is the kraft of a seed packet, with the flowers the sketches grew into. */
 body{isolation:isolate;padding-bottom:var(--footer-reveal-height)}
-main{position:relative;z-index:1;background:var(--paper);border-radius:0 0 var(--radius-2xl) var(--radius-2xl)}
-.garden-footer{position:fixed;inset:auto 0 0;z-index:-1;height:calc(var(--footer-reveal-height) + var(--radius-2xl));margin:0;overflow:hidden}
-.garden-footer img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 60%}
+/* It reaches 24px up under the page so the kraft also fills the gaps between the torn teeth. */
+.packet-footer{position:fixed;inset:auto 0 0;z-index:-1;display:flex;flex-direction:column;justify-content:center;height:calc(var(--footer-reveal-height) + 24px);padding:calc(var(--space-8) + 24px) var(--content-inset) var(--space-8);background:var(--kraft) url('assets/kraft.webp') 0 0/200px;overflow:hidden}
+.packet-footer .eyebrow{color:var(--ink-body)}
+.packet-flowers{display:flex;align-items:center;justify-content:center;gap:clamp(4px,2vw,28px)}
+.packet-flowers img{flex:0 1 auto;width:clamp(64px,13vw,170px);min-width:0;height:auto;filter:var(--shadow-flower);animation:bob 7s ease-in-out infinite}
+.packet-flowers img:nth-child(1){--r:-14deg;animation-delay:0s}
+.packet-flowers img:nth-child(2){--r:8deg;animation-delay:-1.3s}
+.packet-flowers img:nth-child(3){--r:-6deg;animation-delay:-2.6s}
+.packet-flowers img:nth-child(4){--r:10deg;animation-delay:-3.9s}
+.packet-flowers img:nth-child(5){--r:-10deg;animation-delay:-5.2s}
+.packet-flowers img:nth-child(6){--r:14deg;animation-delay:-6.5s}
+/* The flowers drift up and down like the bouquet in the app. */
+@keyframes bob{0%,100%{transform:rotate(var(--r,0deg)) translateY(0)}50%{transform:rotate(var(--r,0deg)) translateY(-7px)}}
 
 @media(max-width:900px){
-.hero-paper{padding:var(--space-8)}
-.hero-subtitle{font-size:30px}
+.packet{--seam-inset:var(--space-2)}
+.packet-body{padding:var(--space-5) var(--space-6) var(--space-6)}
+.hero-subtitle{font-size:28px}
 .idea-grid{gap:var(--space-8)}
 .steps{gap:var(--space-6)}
+.steps h3{margin-right:72px}
+.seed-flower{width:68px}
 .team-grid{grid-template-columns:repeat(2,1fr);gap:var(--space-12) var(--space-8)}
 .team-card:nth-child(n){margin-top:0}
 .team-card:nth-child(even){margin-top:var(--space-6)}
@@ -196,38 +255,43 @@ main{position:relative;z-index:1;background:var(--paper);border-radius:0 0 var(-
 .work-bento{flex-direction:column;row-gap:var(--space-12)}
 .work-featured{flex:none}
 .work-featured .work-cover{flex:none;aspect-ratio:4/3;min-height:0}
-/* The glass title covers the lower part of the shorter featured cover, so its note centers in the space above it. */
+/* The present card covers the lower part of the shorter featured cover, so its note centers in the space above it. */
 .work-featured .work-soon{bottom:40%}}
 
 @media(max-width:640px){
-:root{--section-space:var(--space-12);--bar-top:var(--space-3)}
-h2{font-size:34px}
+:root{--section-space:var(--space-12);--header-height:76px;--gutter:max(16px,env(safe-area-inset-left),env(safe-area-inset-right))}
+h2{font-size:38px}
 h3{font-size:22px}
-/* Phones drop the tab icons, so the bar fits beside the brand. */
-.tab-bar a{padding:10px var(--space-3);font-size:13px}
-.tab-bar a img{display:none!important}
-.brand{font-size:26px}
-.hero{height:auto;min-height:0;max-height:none;padding:var(--space-12) var(--gutter)}
-.hero-paper{padding:var(--space-6)}
-.hero-main{grid-template-columns:1fr;gap:0}
-.drawing-cutout{height:190px;aspect-ratio:auto}
-.hero-heading{padding:var(--space-4) 0 0}
-h1{font-size:64px}
-.hero-subtitle{margin-top:var(--space-3);font-size:26px}
+/* Phones drop the tab icons, so the tabs fit beside the wordmark. */
+.tabs{gap:0}
+.tabs a{padding:0 var(--space-2);font-size:10px}
+.tabs svg{display:none}
+.brand{font-size:32px}
+.brand svg{width:66px;height:10px}
+.hero{min-height:0;max-height:none;padding:var(--space-8) var(--gutter)}
+.packet-strip{height:52px;padding:0 var(--space-5) 12px}
+.packet{--seam-top:66px;--seam-inset:var(--space-3)}
+.packet-body{padding:var(--space-4) var(--space-5) var(--space-6)}
+.packet-main{grid-template-columns:1fr;gap:0;margin-top:var(--space-4)}
+.packet-art{order:-1;width:auto;height:200px;aspect-ratio:auto}
+h1{font-size:76px}
+.hero-subtitle{margin-top:var(--space-4);font-size:26px}
 .idea-grid,.steps{grid-template-columns:1fr}
 .steps{margin-top:var(--space-8)}
+.steps h3{min-height:0;margin-right:72px}
+.seed-flower{top:16px;width:58px}
 .work{--work-gap:var(--space-4);row-gap:var(--space-8)}
 .work-side,.work-bento{row-gap:var(--space-8)}
-.steps article{padding:var(--space-5)}
-.work-body h3{font-size:17px}
-.work-file{font-size:14px}
-.work-open{top:var(--space-2);right:var(--space-2);width:32px;height:32px}
-.work-open svg{width:15px;height:15px}
+.work-body h3{font-size:18px}
+.work-file{font-size:15px}
+.work-open{top:var(--space-3);right:var(--space-3);width:34px;height:34px}
+.work-open svg{width:14px;height:14px}
+.work-soon{font-size:10px;letter-spacing:1px}
 .work-featured .work-body{left:var(--space-3);right:var(--space-3);bottom:var(--space-3);max-width:none;padding:var(--space-4) var(--space-5)}
 .work-featured .work-body h3{font-size:24px}
 .team-grid{gap:var(--space-8) var(--space-5)}
-.team-card h3{font-size:20px;margin-top:var(--space-4)}}
+.team-card h3{font-size:22px;margin-top:var(--space-4)}}
 
-@media(max-width:380px){.brand{font-size:24px}.tab-bar{gap:2px;padding:4px}.tab-bar a{padding:10px 8px;font-size:12px}}
+@media(max-width:380px){.brand{font-size:28px}.tabs a{padding:0 6px;letter-spacing:.5px}}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
