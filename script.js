@@ -1,9 +1,9 @@
 // Degrees are listed one per line beneath each name.
 const teamMembers = [
-  { name: 'Ahyan', degrees: ['BS CS'], photo: 'assets/team-1.png' },
-  { name: 'Elsa', degrees: ['BS Design', 'MS HCI'], photo: 'assets/team-2.png' },
-  { name: 'Jia', degrees: ['BS Design', 'MS HCI'], photo: 'assets/team-3.png' },
-  { name: 'Kelly', degrees: ['BS CS HCI', 'MS CS AI'], photo: 'assets/team-4.png' },
+  { name: 'Ahyan M.', degrees: ['BS CS'], photo: 'assets/team-1.png' },
+  { name: 'Elsa B.', degrees: ['BS Design', 'MS HCI'], photo: 'assets/team-2.png' },
+  { name: 'Jia L.', degrees: ['BS Design', 'MS HCI'], photo: 'assets/team-3.png' },
+  { name: 'Kelly B.G.', degrees: ['BS CS HCI', 'MS CS AI'], photo: 'assets/team-4.png' },
 ];
 const plants = [
   '<path d="M90 220V80M90 155C20 155 30 100 36 92c39 0 62 21 54 63ZM90 125c0-55 43-70 61-59 0 43-22 65-61 59ZM90 190c-49 4-59-26-60-42 33-7 58 6 60 42Z"/>',
