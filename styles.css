@@ -113,7 +113,7 @@ transform:translateY(calc(var(--open,0) * 90px)) scale(calc(1 - var(--open,0) * 
 @keyframes pulse{0%,55%{transform:scale(1);opacity:0}60%{opacity:.5}100%{transform:scale(1.9);opacity:0}}
 .packet-main{display:grid;grid-template-columns:58% 42%;align-items:center;gap:var(--space-6);margin-top:var(--space-6)}
 /* The packet picture: the garden photo printed in the shape of a person sketching. */
-.packet-art{width:100%;aspect-ratio:1;background:url('assets/garden.jpg') 30% 55%/cover;-webkit-mask:url('assets/drawing-silhouette.png') center/contain no-repeat;mask:url('assets/drawing-silhouette.png') center/contain no-repeat}
+.packet-art{width:100%;aspect-ratio:1;background:url('assets/hero-blossom.jpg') 50% 40%/cover;-webkit-mask:url('assets/drawing-silhouette.png') center/contain no-repeat;mask:url('assets/drawing-silhouette.png') center/contain no-repeat}
 .packet-copy .eyebrow{margin-bottom:var(--space-3)}
 /* Display/Wordmark XL, at packet size. */
 h1{font-size:clamp(88px,12vw,148px);line-height:.92;letter-spacing:-.025em}
@@ -223,6 +223,8 @@ div.work-cover::before{content:'';position:absolute;left:var(--space-3);right:va
 /* Title/Seed, then Mono/Eyebrow. */
 .team-card h3{margin-top:var(--space-6);text-align:center;font-size:26px;line-height:1}
 .team-card p{margin-top:var(--space-2);font:400 10px/1.7 var(--font-mono);letter-spacing:1px;text-transform:uppercase;color:var(--ink-muted);white-space:pre-line;text-align:center}
+/* The role sits between the name and the degrees, in the serif at body color. */
+.team-card .role{margin-top:var(--space-2);font:400 18px/1.2 var(--font-serif);letter-spacing:0;text-transform:none;color:var(--ink-body)}
 
 /* The page is one sheet that ends in a torn edge. Under it is the kraft of a seed packet, with the flowers the sketches grew into. */
 body{isolation:isolate;padding-bottom:var(--footer-reveal-height)}

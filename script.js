@@ -1,9 +1,9 @@
-// Degrees are listed one per line beneath each name.
+// Each card shows the name, the role, then the degrees one per line.
 const teamMembers = [
-  { name: 'Ahyan M.', degrees: ['BS CS'], photo: 'assets/team-1.png' },
-  { name: 'Elsa B.', degrees: ['BS Design', 'MS HCI'], photo: 'assets/team-2.png' },
-  { name: 'Jia L.', degrees: ['BS Design', 'MS HCI'], photo: 'assets/team-3.png' },
-  { name: 'Kelly B.G.', degrees: ['BS CS HCI', 'MS CS AI'], photo: 'assets/team-4.png' },
+  { name: 'Ahyan M.', role: 'Developer', degrees: ['BS CS'], photo: 'assets/team-1.png' },
+  { name: 'Elsa B.', role: 'Designer', degrees: ['BS Design', 'MS HCI'], photo: 'assets/team-2.png' },
+  { name: 'Jia L.', role: 'Designer', degrees: ['BS Design', 'MS HCI'], photo: 'assets/team-3.png' },
+  { name: 'Kelly B.G.', role: 'Developer', degrees: ['BS CS HCI', 'MS CS AI'], photo: 'assets/team-4.png' },
 ];
 const plants = [
   '<path d="M90 220V80M90 155C20 155 30 100 36 92c39 0 62 21 54 63ZM90 125c0-55 43-70 61-59 0 43-22 65-61 59ZM90 190c-49 4-59-26-60-42 33-7 58 6 60 42Z"/>',
@@ -29,9 +29,12 @@ teamMembers.forEach((member, index) => {
   }
   const name = document.createElement('h3');
   name.textContent = member.name;
+  const role = document.createElement('p');
+  role.className = 'role';
+  role.textContent = member.role;
   const degrees = document.createElement('p');
   degrees.textContent = member.degrees.join('\n');
-  card.append(portrait, name, degrees);
+  card.append(portrait, name, role, degrees);
   grid.append(card);
 });
 // Prints tip toward the pointer as it moves over them, up to 8 degrees each way.
