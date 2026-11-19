@@ -61,8 +61,8 @@ const work = [
   { title: 'Concept video', pdf: 'assignment_downloads/A4.pdf', cover: 'assignment_downloads/covers/A4.jpg', files: [{ label: 'PowerPoint', type: 'slides', href: 'assignment_downloads/A4.pptx' }, { label: 'Watch', type: 'video', video: 'https://www.youtube.com/embed/fZAmPD2v1Gg?autoplay=1' }, { label: 'Concept video', type: 'download', href: 'assignment_downloads/A4_Concept_Video_Compressed.mp4.zip' }] },
   { title: 'Low-fi prototyping and usability testing', pdf: 'assignment_downloads/A5.pdf', cover: 'assignment_downloads/covers/A5.jpg', files: [{ label: 'PowerPoint', type: 'slides', href: 'assignment_downloads/A5.pptx' }, { label: 'Sketch report', type: 'doc', href: 'assignment_downloads/A5_SketchReport.pdf' }] },
   { title: 'Interactive medium-fi prototype', pdf: 'assignment_downloads/A6.pdf', cover: 'assignment_downloads/covers/A6.jpg', files: [{ label: 'Prototype', type: 'link', href: 'https://www.figma.com/proto/q1CqyCqSM2ClbAZqmbeeVK/A6-Prototype?node-id=4-792&p=f&t=dXI3bme3f0bfRXHn-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4%3A792&show-proto-sidebar=1' }, { label: 'Figma', type: 'design', href: 'https://www.figma.com/design/q1CqyCqSM2ClbAZqmbeeVK/A6-Prototype?node-id=0-1&p=f&t=dXI3bme3f0bfRXHn-0' }, { label: 'README', type: 'doc', href: 'assignment_downloads/A6_README.pdf' }] },
+  { title: 'Heuristic evaluation synthesis', pdf: 'assignment_downloads/A9_Heuristic_Evaluation.pdf', cover: 'assignment_downloads/covers/A9.jpg', files: [{ label: 'PDF', type: 'doc', href: 'assignment_downloads/A9_Heuristic_Evaluation.pdf' }, { label: 'Spreadsheet', type: 'sheet', href: 'assignment_downloads/A9_Heuristic_Evaluation.xlsx' }] },
   { title: 'Interactive high-fi prototype', pdf: '', cover: '', files: [{ label: 'PowerPoint', type: 'slides', href: '' }, { label: 'Prototype', type: 'link', href: '' }, { label: 'README', type: 'doc', href: '' }] },
-  { title: 'Heuristic evaluation synthesis', pdf: '', cover: '', files: [{ label: 'PDF', type: 'doc', href: '' }, { label: 'Spreadsheet', type: 'sheet', href: '' }] },
   { title: 'Poster, pitch and demo video', pdf: '', cover: '', files: [{ label: 'PowerPoint', type: 'slides', href: '' }, { label: 'Script', type: 'doc', href: '' }, { label: 'Poster', type: 'image', href: '' }, { label: 'Poster source', type: 'source', href: '' }, { label: 'Watch demo', type: 'video', video: '' }, { label: 'Download demo', type: 'download', href: '' }] },
   { title: 'Final report', pdf: '', cover: '', files: [{ label: 'Word doc', type: 'doc', href: '' }, { label: 'PDF', type: 'doc', href: '' }] },
 ];
@@ -100,7 +100,7 @@ function workFile(file) {
     });
   } else {
     link.href = file.href;
-    if (/\.(pptx|zip)$/.test(file.href)) link.download = '';
+    if (/\.(pptx|xlsx|zip)$/.test(file.href)) link.download = '';
     else {
       link.target = '_blank';
       link.rel = 'noopener';
